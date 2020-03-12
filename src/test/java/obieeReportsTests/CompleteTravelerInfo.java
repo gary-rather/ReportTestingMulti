@@ -18,9 +18,8 @@ public class CompleteTravelerInfo extends TestBaseReports {
 
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("2 ====== Report CompleteTravelerInfo ======================================="  );
+		log.debug("0 ====== Report CompleteTravelerInfo ======================================="  );
 		super.setTheTest("CompleteTravelerInfo");
-		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
@@ -47,7 +46,6 @@ public class CompleteTravelerInfo extends TestBaseReports {
 				|| this.getTheTest().equals("CompleteTravelerInfo")
 				) {
 
-			log.debug("Try completeTravelerInfo 1");
 			log.debug("Try completeTravelerInfo 1");
 			click("cti_set_reset_menu_xpath");
 			click("cti_set_clear_all_data_xpath");

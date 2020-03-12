@@ -10,7 +10,7 @@ public class ReportFSA extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report ReportFSA setTheTest: "  );
+		log.debug("0 ====== Report ReportFSA ======================================="  );
 		super.setTheTest("ReportFSA");
 	}
 
@@ -21,7 +21,7 @@ public class ReportFSA extends TestBaseReports {
 		if(config.getProperty("reportRequested").equals("fsa")
 				|| this.getTheTest().equals("ReportFSA")) {
 
-			System.out.println("Try ReportFSA 1");
+			log.debug("Try ReportFSA 1");
 
 			click("fsa_reset_menu_xpath");
 			click("fsa_clear_all_data_xpath");

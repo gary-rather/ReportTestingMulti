@@ -12,9 +12,8 @@ public class AuditTrailUserData extends TestBaseReports {
 
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("2 ====== Report AuditTrailUserData ======================================="  );
+		log.debug("0 ====== Report AuditTrailUserData ======================================="  );
 		super.setTheTest("AuditTrailUserData");
-		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
@@ -23,7 +22,7 @@ public class AuditTrailUserData extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("audit trail user data")
 				|| this.getTheTest().equals("AuditTrailUserData")) {
 
-			System.out.println("Try auditTrailUserData 1");
+			log.debug("Try auditTrailUserData 1");
 			click("atu_reset_menu_xpath");
 			click("atu_clear_all_data_xpath");
 			

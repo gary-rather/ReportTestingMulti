@@ -13,7 +13,7 @@ public class AuditTrailPersonData extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report AuditTrailPersonData setTheTest: "  );
+		log.debug("0 ====== Report AuditTrailPersonData ======================================="  );
 		super.setTheTest("AuditTrailPersonData");
 	}
 
@@ -36,7 +36,7 @@ public class AuditTrailPersonData extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("audit trail person data")
 				|| this.getTheTest().equals("AuditTrailPersonData")) {
 
-			System.out.println("Try auditTrailPersonData 1");
+			log.debug("Try auditTrailPersonData 1");
 			click("atp_reset_menu_xpath");
 			click("atp_clear_all_data_xpath");
 

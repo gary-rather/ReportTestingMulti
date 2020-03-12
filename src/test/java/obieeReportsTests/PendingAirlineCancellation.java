@@ -11,7 +11,7 @@ public class PendingAirlineCancellation extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report PendingAirlineCancellation setTheTest: "  );
+		log.debug("0 ====== Report PendingAirlineCancellation ======================================="  );
 		super.setTheTest("PendingAirlineCancellation");
 	}
 
@@ -22,7 +22,7 @@ public class PendingAirlineCancellation extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("pending airline cancellation")
 				|| this.getTheTest().equals("PendingAirlineCancellation")) {
 
-			System.out.println("Try PendingAirlineCancellation 1");
+			log.debug("Try PendingAirlineCancellation 1");
 
 			click("pac_reset_menu_xpath");
 			click("pac_clear_all_data_xpath");

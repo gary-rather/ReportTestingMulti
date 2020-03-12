@@ -19,9 +19,8 @@ public class StatusSummary extends TestBaseReports {
 
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("2 ====== Report StatusSummary ======================================="  );
+		log.debug("0 ====== Report StatusSummary ======================================="  );
 		super.setTheTest("StatusSummary");
-		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
@@ -34,8 +33,7 @@ public class StatusSummary extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("status summary")
 				|| this.getTheTest().equals("StatusSummary")) {
 
-			System.out.println("Try StatusSummary 1");
-			log.debug("Going into Document & Trip Status section");
+			log.debug("Try StatusSummary 1");
 
 			driver.findElement(By.xpath(OR.getProperty("document_and_trip_status"))).click();
 			log.debug("Testing Status Summary Report");

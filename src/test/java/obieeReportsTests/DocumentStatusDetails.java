@@ -17,7 +17,7 @@ public class DocumentStatusDetails extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report DocumentStatusDetails setTheTest: "  );
+		log.debug("0 ====== Report DocumentStatusDetails ======================================="  );
 		super.setTheTest("DocumentStatusDetails");
 	}
 
@@ -30,7 +30,7 @@ public class DocumentStatusDetails extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("document status details")
 				|| this.getTheTest().equals("DocumentStatusDetails")) {
 
-			System.out.println("Try DocumentStatusDetails 1");
+			log.debug("Try DocumentStatusDetails 1");
 
 			click("dsd_reset_menu_xpath");
 			click("dsd_clear_all_data_xpath");

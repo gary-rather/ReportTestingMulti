@@ -10,7 +10,7 @@ public class DebtManagementHistory extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report DebtManagementHistory setTheTest: "  );
+		log.debug("0 ====== Report DebtManagementHistory ======================================="  );
 		super.setTheTest("DebtManagementHistory");
 	}
 
@@ -21,7 +21,7 @@ public class DebtManagementHistory extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("debt management history")
 				|| this.getTheTest().equals("DebtManagementHistory")) {
 
-			System.out.println("Try DebtManagementHistory 1");
+			log.debug("Try DebtManagementHistory 1");
 
 			click("dmh_reset_menu_xpath");
 			click("dmh_clear_all_date_xpath");

@@ -11,9 +11,8 @@ public class ConstructedTravel extends TestBaseReports {
 
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("2 ====== Report ConstructedTravel ======================================="  );
+		log.debug("0 ====== Report ConstructedTravel ======================================="  );
 		super.setTheTest("ConstructedTravel");
-		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
@@ -23,7 +22,7 @@ public class ConstructedTravel extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("constructed travel")
 				|| this.getTheTest().equals("ConstructedTravel")) {
 
-			System.out.println("Try ConstructedTravel 1");
+			log.debug("Try ConstructedTravel 1");
 			click("ct_reset_menu_xpath");
 			click("ct_clear_all_data_xpath");
 

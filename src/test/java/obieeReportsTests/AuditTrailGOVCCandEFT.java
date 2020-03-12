@@ -9,9 +9,8 @@ import obieeReportsUtilities.TestUtilReports;
 public class AuditTrailGOVCCandEFT extends TestBaseReports {
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("2 ====== Report AuditTrailGOVCCandEFT ======================================="  );
+		log.debug("0 ====== Report AuditTrailGOVCCandEFT ======================================="  );
 		super.setTheTest("AuditTrailGOVCCandEFT");
-		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
@@ -22,7 +21,7 @@ public class AuditTrailGOVCCandEFT extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("audit trail govcc eft data")
 		    || this.getTheTest().equals("AuditTrailGOVCCandEFT")) {
 
-			System.out.println("Try AuditTrailGOVCCandEFT 1");
+			log.debug("Try AuditTrailGOVCCandEFT 1");
 			click("atge_reset_menu_xpath");
 			click("atge_clear_all_data_xpath");
 

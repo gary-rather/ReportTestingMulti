@@ -10,7 +10,7 @@ public class ReportOCONUS extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report ReportOCONUS setTheTest: "  );
+		log.debug("0 ====== Report ReportOCONUS ======================================="  );
 		super.setTheTest("ReportOCONUS");
 	}
 
@@ -22,7 +22,7 @@ public class ReportOCONUS extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("oconus")
 				|| this.getTheTest().equals("ReportOCONUS")) {
 
-			System.out.println("Try ReportOCONUS 1");
+			log.debug("Try ReportOCONUS 1");
 
 			click("oc_reset_menu_xpath");
 			click("oc_clear_all_data_xpath");

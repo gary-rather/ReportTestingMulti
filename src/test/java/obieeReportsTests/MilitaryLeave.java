@@ -10,7 +10,7 @@ public class MilitaryLeave extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report MilitaryLeave setTheTest: "  );
+		log.debug("0 ====== Report MilitaryLeave ======================================="  );
 		super.setTheTest("MilitaryLeave");
 	}
 
@@ -21,7 +21,7 @@ public class MilitaryLeave extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("military leave")
 				|| this.getTheTest().equals("MilitaryLeave")) {
 
-			System.out.println("Try MilitaryLeave 1");
+			log.debug("Try MilitaryLeave 1");
 
 			click("mil_reset_menu_xpath");
 			click("mil_clear_all_data_xpath");

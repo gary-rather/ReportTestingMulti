@@ -11,7 +11,7 @@ public class UnsubmittedVoucher extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report UnsubmittedVoucher setTheTest: "  );
+		log.debug("0 ====== Report UnsubmittedVoucher ======================================="  );
 		super.setTheTest("UnsubmittedVoucher");
 	}
 
@@ -23,7 +23,7 @@ public class UnsubmittedVoucher extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("unsubmitted voucher")
 				|| this.getTheTest().equals("UnsubmittedVoucher")) {
 
-			System.out.println("Try UnsubmittedVoucher 1");
+			log.debug("Try UnsubmittedVoucher 1");
 
 			click("uv_reset_menu_xpath");
 			click("uv_clear_all_data_xpath");

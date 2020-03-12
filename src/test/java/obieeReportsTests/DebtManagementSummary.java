@@ -10,7 +10,7 @@ public class DebtManagementSummary extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report DebtManagementSummary setTheTest: "  );
+		log.debug("0 ====== Report DebtManagementSummary ======================================="  );
 		super.setTheTest("DebtManagementSummary");
 	}
 
@@ -21,7 +21,7 @@ public class DebtManagementSummary extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("debt management summary")
 				|| this.getTheTest().equals("DebtManagementSummary")) {
 
-			System.out.println("Try DebtManagementSummary 1");
+			log.debug("Try DebtManagementSummary 1");
 
 			click("dms_reset_menu_xpath");
 			click("dms_clear_all_date_xpath");

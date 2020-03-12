@@ -10,7 +10,7 @@ public class ExpenseReportByDocumentName extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report ExpenseReportByDocumentName setTheTest: "  );
+		log.debug("0 ====== Report ExpenseReportByDocumentName ======================================="  );
 		super.setTheTest("ExpenseReportByDocumentName");
 	}
 
@@ -21,7 +21,7 @@ public class ExpenseReportByDocumentName extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("expense report by document name")
 				|| this.getTheTest().equals("ExpenseReportByDocumentName")) {
 
-			System.out.println("Try ExpenseReportByDocumentName 1");
+			log.debug("Try ExpenseReportByDocumentName 1");
 
 			click("erc_reset_menu_xpath");
 			click("erc_clear_all_data_xpath");

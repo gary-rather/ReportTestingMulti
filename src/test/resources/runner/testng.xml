@@ -11,10 +11,35 @@
              <class name="obieeReportsTests.AuditTrailPersonData"/>
               <class name="obieeReportsTests.RoutingStatus"/>
              -->
-        <class name="obieeReportsTests.StatusSummary"/>
-        <class name="obieeReportsTests.AuditTrailUserData"/>
         <class name="obieeReportsTests.AuditTrailGOVCCandEFT"/>
+        <class name="obieeReportsTests.AuditTrailPersonData"/>
+        <class name="obieeReportsTests.AuditTrailUserData"/>
+        <class name="obieeReportsTests.CompleteTravelerInfo"/>
+        <class name="obieeReportsTests.ConstructedTravel"/>
+        <class name="obieeReportsTests.DebtManagementHistory"/>
+        <class name="obieeReportsTests.DebtManagementSummary"/>
+        <class name="obieeReportsTests.DebtSummaryByMonth"/>
+        <class name="obieeReportsTests.DocumentStatusDetails"/>
+        <class name="obieeReportsTests.EnlistedBAS"/>
+        <class name="obieeReportsTests.ExpenseReportByCategory"/>
+        <class name="obieeReportsTests.ExpenseReportByDocumentName"/>
+        <class name="obieeReportsTests.ExpenseWithoutRequiredReceipt"/>
+        <class name="obieeReportsTests.MilitaryLeave"/>
+        <class name="obieeReportsTests.PendingAirlineCancellation"/>
+        <class name="obieeReportsTests.PosAckDelinquency"/>
+        <class name="obieeReportsTests.ReportAdjustments"/>
+        <class name="obieeReportsTests.ReportFSA"/>
+        <class name="obieeReportsTests.ReportOCONUS"/>
+        <class name="obieeReportsTests.ReportPERSTEMPO"/>
+        <class name="obieeReportsTests.RoutingStatus"/>
         <class name="obieeReportsTests.SeparationOfDuty"/>
+        <class name="obieeReportsTests.SpecialDuty"/>
+        <class name="obieeReportsTests.StatusSummary"/>
+        <class name="obieeReportsTests.TravelerStatus"/>
+        <class name="obieeReportsTests.TripDetails"/>
+        <class name="obieeReportsTests.UnsubmittedVoucher"/>
+
+
 
 
 

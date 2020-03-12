@@ -10,7 +10,7 @@ public class ExpenseReportByCategory extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report ExpenseReportByCategory setTheTest: "  );
+		log.debug("0 ====== Report ExpenseReportByCategory ======================================="  );
 		super.setTheTest("ExpenseReportByCategory");
 	}
 
@@ -22,7 +22,7 @@ public class ExpenseReportByCategory extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("expense report by category")
 				|| this.getTheTest().equals("ExpenseReportByCategory")) {
 
-			System.out.println("Try ExpenseReportByCategory 1");
+			log.debug("Try ExpenseReportByCategory 1");
 
 			click("erc_reset_menu_xpath");
 			click("erc_clear_all_data_xpath");

@@ -11,7 +11,7 @@ public class TravelerStatus extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report TravelerStatus setTheTest: "  );
+		log.debug("0 ====== Report TravelerStatus ======================================="  );
 		super.setTheTest("TravelerStatus");
 	}
 
@@ -23,7 +23,7 @@ public class TravelerStatus extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("traveler status")
 				|| this.getTheTest().equals("TravelerStatus")) {
 
-			System.out.println("Try TravelerStatus 1");
+			log.debug("Try TravelerStatus 1");
 
 			click("ts_reset_menu_xpath");
 			click("ts_clear_all_data_xpath");

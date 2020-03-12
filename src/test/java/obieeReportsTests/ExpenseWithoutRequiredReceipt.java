@@ -10,7 +10,7 @@ public class ExpenseWithoutRequiredReceipt extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report ExpenseWithoutRequiredReceipt setTheTest: "  );
+		log.debug("0 ====== Report ExpenseWithoutRequiredReceipt ======================================="  );
 		super.setTheTest("ExpenseWithoutRequiredReceipt");
 	}
 
@@ -22,7 +22,7 @@ public class ExpenseWithoutRequiredReceipt extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("expense without required receipt")
 				|| this.getTheTest().equals("ExpenseWithoutRequiredReceipt")) {
 
-			System.out.println("Try ExpenseWithoutRequiredReceipt 1");
+			log.debug("Try ExpenseWithoutRequiredReceipt 1");
 
 			click("ewrr_reset_menu_xpath");
 			click("ewrr_clear_all_data_xpath");

@@ -10,7 +10,7 @@ public class DebtSummaryByMonth extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report DebtSummaryByMonth setTheTest: "  );
+		log.debug("0 ====== Report DebtSummaryByMonth ======================================="  );
 		super.setTheTest("DebtSummaryByMonth");
 	}
 
@@ -21,7 +21,7 @@ public class DebtSummaryByMonth extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("debt summary by month")
 				|| this.getTheTest().equals("DebtSummaryByMonth")) {
 
-			System.out.println("Try DebtSummaryByMonth 1");
+			log.debug("Try DebtSummaryByMonth 1");
 
 			click("dsbm_reset_menu_xpath");
 			click("dsbm_clear_all_data_xpath");

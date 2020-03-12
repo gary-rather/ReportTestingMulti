@@ -11,7 +11,7 @@ public class ReportAdjustments extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report ReportAdjustments setTheTest: "  );
+		log.debug("0 ====== Report ReportAdjustments ======================================="  );
 		super.setTheTest("ReportAdjustments");
 	}
 
@@ -24,7 +24,7 @@ public class ReportAdjustments extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("adjustments")
 				|| this.getTheTest().equals("ReportAdjustments")) {
 
-			System.out.println("Try reportAdjustments 1");
+			log.debug("Try reportAdjustments 1");
 
 			click("adj_reset_menu_xpath");
 			click("adj_clear_all_data_xpath");

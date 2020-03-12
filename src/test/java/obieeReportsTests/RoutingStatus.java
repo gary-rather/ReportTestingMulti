@@ -11,7 +11,7 @@ public class RoutingStatus extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report RoutingStatus setTheTest: "  );
+		log.debug("0 ====== Report RoutingStatus ======================================="  );
 		super.setTheTest("RoutingStatus");
 	}
 
@@ -22,7 +22,7 @@ public class RoutingStatus extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("routing status")
 				|| this.getTheTest().equals("RoutingStatus")) {
 
-			System.out.println("Try RoutingStatus 1");
+			log.debug("Try RoutingStatus 1");
 
 			click("rtg_reset_menu_xpath");
 			click("rtg_clear_all_data_xpath");

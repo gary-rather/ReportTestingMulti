@@ -10,7 +10,7 @@ public class PosAckDelinquency extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report PosAckDelinquency setTheTest: "  );
+		log.debug("0 ====== Report PosAckDelinquency ======================================="  );
 		super.setTheTest("PosAckDelinquency");
 	}
 
@@ -22,10 +22,9 @@ public class PosAckDelinquency extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("posack delinquency")
 				|| this.getTheTest().equals("PosAckDelinquency")) {
 
-			System.out.println("Try PosAckDelinquency 1");
+			log.debug("Try PosAckDelinquency 1");
 			//click("pad_cont_to_report_id");
 
-			System.out.println("Try PosAckDelinquency 2");
 			click("pad_reset_menu_xpath");
 
 			System.out.println("Try PosAckDelinquency 3");

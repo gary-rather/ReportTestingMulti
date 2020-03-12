@@ -10,7 +10,7 @@ public class SpecialDuty extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report SpecialDuty setTheTest: "  );
+		log.debug("0 ====== Report SpecialDuty ======================================="  );
 		super.setTheTest("SpecialDuty");
 	}
 
@@ -21,7 +21,7 @@ public class SpecialDuty extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("special duty")
 				|| this.getTheTest().equals("SpecialDuty")) {
 
-			System.out.println("Try SpecialDuty 1");
+			log.debug("Try SpecialDuty 1");
 
 			click("sd_reset_menu_xpath");
 			click("sd_clear_all_data_xpath");

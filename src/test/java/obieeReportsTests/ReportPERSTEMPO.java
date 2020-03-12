@@ -10,7 +10,7 @@ public class ReportPERSTEMPO extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report ReportPERSTEMPO setTheTest: "  );
+		log.debug("0 ====== Report ReportPERSTEMPO ======================================="  );
 		super.setTheTest("ReportPERSTEMPO");
 	}
 
@@ -21,7 +21,7 @@ public class ReportPERSTEMPO extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("perstempo")
 				|| this.getTheTest().equals("ReportPERSTEMPO")) {
 
-			System.out.println("Try ReportPERSTEMPO 1");
+			log.debug("Try ReportPERSTEMPO 1");
 
 			click("per_reset_menu_xpath");
 			click("per_clear_all_data_xpath");

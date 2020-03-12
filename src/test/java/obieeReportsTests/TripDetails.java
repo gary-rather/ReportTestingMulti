@@ -20,7 +20,7 @@ public class TripDetails extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report TripDetails setTheTest: "  );
+		log.debug("0 ====== Report TripDetails ======================================="  );
 		super.setTheTest("TripDetails");
 	}
 
@@ -33,7 +33,7 @@ public class TripDetails extends TestBaseReports {
 		if (config.getProperty("reportRequested").equals("trip details")
 				|| this.getTheTest().equals("TripDetails")) {
 
-            System.out.println("Trip Details 1");
+			log.debug("Trip Details 1");
 			click("td_reset_menu_xpath");
 			click("td_clear_all_data_xpath");
 

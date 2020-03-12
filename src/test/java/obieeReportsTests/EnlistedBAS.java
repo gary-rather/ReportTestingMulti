@@ -10,7 +10,7 @@ public class EnlistedBAS extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		System.out.println("Report EnlistedBAS setTheTest: "  );
+		log.debug("0 ====== Report EnlistedBAS ======================================="  );
 		super.setTheTest("EnlistedBAS");
 	}
 
@@ -21,7 +21,7 @@ public class EnlistedBAS extends TestBaseReports {
 		if(config.getProperty("reportRequested").equals("enlisted bas")
 				|| this.getTheTest().equals("EnlistedBAS")) {
 
-			System.out.println("Try EnlistedBAS 1");
+			log.debug("Try EnlistedBAS 1");
 
 			click("ebas_reset_menu_xpath");
 			click("ebas_clear_all_data_xpath");

@@ -20,9 +20,8 @@ public class SeparationOfDuty extends TestBaseReports {
 
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("2 ====== Report SeparationOfDuty ======================================="  );
+		log.debug("0 ====== Report SeparationOfDuty ======================================="  );
 		super.setTheTest("SeparationOfDuty");
-		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
