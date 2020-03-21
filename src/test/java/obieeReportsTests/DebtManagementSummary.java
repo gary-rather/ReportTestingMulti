@@ -1,5 +1,6 @@
 package obieeReportsTests;
 
+import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -16,24 +17,36 @@ public class DebtManagementSummary extends TestBaseReports {
 
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void debtManagementSummary(String dmsOrganization) {
+	public void debtManagementSummary(String dmsOrganization) throws Exception {
 
-		if (config.getProperty("reportRequested").equals("debt management summary")
-				|| this.getTheTest().equals("DebtManagementSummary")) {
+		if (this.getTheTest().equals("DebtManagementSummary")) {
 
-			log.debug("Try DebtManagementSummary 1");
+			this.setUp();
 
+			log.debug("Going into Debt Management section ");
+			driver.findElement(By.xpath(OR.getProperty("debt_management"))).click();
+			Thread.sleep(500);
+
+			log.debug("Testing Debt Management Summary Report");
+			driver.findElement(By.xpath(OR.getProperty("debt_management_summary"))).click();
+
+			Thread.sleep(1000);
 			click("dms_reset_menu_xpath");
 			click("dms_clear_all_date_xpath");
 			type("dms_organization_xpath", dmsOrganization);
+			// Need to click somwhere to get the Apply to show
+			driver.findElement(By.xpath("//body")).click();
+			Thread.sleep(1000);
 			click("dms_run_report_xpath");
+			Thread.sleep(1000);
 
+			this.exportToCSV();
 		} else {
 			
 			throw new SkipException("not running this report currently");
 
 		}
-
+		log.debug("Report DebtManagementHistory Complete ##########################");
 	}
 
 }

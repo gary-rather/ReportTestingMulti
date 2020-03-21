@@ -18,7 +18,7 @@
         <class name="obieeReportsTests.ConstructedTravel"/>
         <class name="obieeReportsTests.DebtManagementHistory"/>
         <class name="obieeReportsTests.DebtManagementSummary"/>
-        <class name="obieeReportsTests.DebtSummaryByMonth"/>
+        <!--<class name="obieeReportsTests.DebtSummaryByMonth"/> -->
         <class name="obieeReportsTests.DocumentStatusDetails"/>
         <class name="obieeReportsTests.EnlistedBAS"/>
         <class name="obieeReportsTests.ExpenseReportByCategory"/>
@@ -30,7 +30,7 @@
         <class name="obieeReportsTests.ReportAdjustments"/>
         <class name="obieeReportsTests.ReportFSA"/>
         <class name="obieeReportsTests.ReportOCONUS"/>
-        <class name="obieeReportsTests.ReportPERSTEMPO"/>
+        <!--<class name="obieeReportsTests.ReportPERSTEMPO"/>-->
         <class name="obieeReportsTests.RoutingStatus"/>
         <class name="obieeReportsTests.SeparationOfDuty"/>
         <class name="obieeReportsTests.SpecialDuty"/>

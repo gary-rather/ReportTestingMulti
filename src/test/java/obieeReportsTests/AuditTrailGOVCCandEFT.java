@@ -1,12 +1,18 @@
 package obieeReportsTests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import obieeReportsBase.TestBaseReports;
 import obieeReportsUtilities.TestUtilReports;
 
+import java.util.List;
+
 public class AuditTrailGOVCCandEFT extends TestBaseReports {
+
 	@BeforeClass
 	public void runBeforeClass(){
 		log.debug("0 ====== Report AuditTrailGOVCCandEFT ======================================="  );
@@ -15,13 +21,24 @@ public class AuditTrailGOVCCandEFT extends TestBaseReports {
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void auditTrailGOVCCandEFT(String atgeChangePersonSSNPartial, String atgeMaskAccountNum,
-			String atgeChangeDateStart, String atgeChangeDateEnd) {
+			String atgeChangeDateStart, String atgeChangeDateEnd) throws InterruptedException, Exception {
         System.out.println("Try AuditTrailGOVCCandEFT");
+        super.setUp();
 
 		if (config.getProperty("reportRequested").equals("audit trail govcc eft data")
 		    || this.getTheTest().equals("AuditTrailGOVCCandEFT")) {
 
-			log.debug("Try AuditTrailGOVCCandEFT 1");
+			driver.findElement(By.xpath(OR.getProperty("traveler_and_user_info"))).click();
+			log.debug("Try Traveler and User Info 1");
+			Thread.sleep(500);
+
+			driver.findElement(By.xpath(OR.getProperty("audit_trail_all_reports"))).click();
+			Thread.sleep(500);
+
+			log.debug("Testing Audit Trail GOVCC & EFT Data Report");
+			driver.findElement(By.xpath(OR.getProperty("audit_trail_govcc_eft_data"))).click();
+
+			Thread.sleep(500);
 			click("atge_reset_menu_xpath");
 			click("atge_clear_all_data_xpath");
 
@@ -41,13 +58,16 @@ public class AuditTrailGOVCCandEFT extends TestBaseReports {
 			type("atge_change_date_end_xpath", atgeChangeDateEnd);
 
 			click("atge_run_report_xpath");
+			log.debug("Ran  Audit Trail GOVCC & EFT Data Report");
+
+			this.exportToCSV();
 
 		} else {
 
 			throw new SkipException("not running this report currently");
 
 		}
-
+		log.debug("Leaving AuditTrailGOVCCandEFT");
 	}
 
 }

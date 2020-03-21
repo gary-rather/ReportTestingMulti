@@ -1,5 +1,6 @@
 package obieeReportsTests;
 
+import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,16 +18,28 @@ public class ReportAdjustments extends TestBaseReports {
 
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void reportAdjustments(String adjOrganization, String adjDoctype, String adjAdjustmentDateStart,
-			String adjAdjustmentDateEnd, String adjTravelerLastName, String adjTravelerFirstName,
-			String adjTravelerPartialSSN) {
+	public void reportAdjustments(String adjOrganization,
+								  String adjDoctype,
+								  String adjAdjustmentDateStart,
+								  String adjAdjustmentDateEnd,
+								  String adjTravelerLastName,
+								  String adjTravelerFirstName,
+			                      String adjTravelerPartialSSN) throws Exception {
             System.out.println("Try reportAdjustments");
-		if (config.getProperty("reportRequested").equals("adjustments")
-				|| this.getTheTest().equals("ReportAdjustments")) {
+		if (this.getTheTest().equals("ReportAdjustments")) {
+
+			this.setUp();
 
 			log.debug("Try reportAdjustments 1");
+			log.debug("Going into Document & Trip Details section");
+			driver.findElement(By.xpath(OR.getProperty("document_and_trip_details"))).click();
 
-			click("adj_reset_menu_xpath");
+
+				log.debug("Testing Adjustments Report");
+				driver.findElement(By.xpath(OR.getProperty("adjustments"))).click();
+
+				Thread.sleep(1000);
+				click("adj_reset_menu_xpath");
 			click("adj_clear_all_data_xpath");
 
 			System.out.println("Try reportAdjustments 2");
@@ -41,14 +54,19 @@ public class ReportAdjustments extends TestBaseReports {
 			type("adj_traveler_partial_ssn_xpath", adjTravelerPartialSSN);
 
 			System.out.println("Try reportAdjustments 5");
+			Thread.sleep(1000);
 			click("adj_run_report_xpath");
+
+			Thread.sleep(1000);
+
+			this.exportToCSV();
 
 		} else {
 
 			throw new SkipException("not running this report currently");
 
 		}
-
+		log.debug("Report ReportAdjustments Complete ##########################");
 	}
 
 }

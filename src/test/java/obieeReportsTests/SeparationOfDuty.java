@@ -25,15 +25,23 @@ public class SeparationOfDuty extends TestBaseReports {
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void separationOfDuty(String sodOrganization, String sodApproveDateStart, String sodApproveDateEnd) throws InterruptedException {
+	public void separationOfDuty(String sodOrganization, String sodApproveDateStart, String sodApproveDateEnd) throws Exception {
 		System.out.println("Report SeparationOfDuty: " + this.getTheTest() );
 		super.setUp();
 		log.debug("Going into Traveler & User Information section");
 
-		if (config.getProperty("reportRequested").equals("separation of duty")
-				|| this.getTheTest().equals("SeparationOfDuty")) {
+		if (this.getTheTest().equals("SeparationOfDuty")) {
+
+			this.setUp();
 
 			log.debug("Try SeparationOfDuty 0");
+			WebElement ti = driver.findElement(By.xpath("//span[text()[contains(.,'Traveler & User Information Dashboard')]]"));
+			ti.click();
+			//driver.findElement(By.xpath(OR.getProperty("traveler_and_user_info"))).click();
+
+
+				log.debug("Testing Separation Of Duty Report");
+				driver.findElement(By.xpath(OR.getProperty("separation_of_duty"))).click();
 
 			click("sod_reset_menu_xpath");
 			click("sod_clear_all_data_xpath");

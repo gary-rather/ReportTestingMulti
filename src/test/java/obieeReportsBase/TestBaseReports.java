@@ -3,6 +3,7 @@ package obieeReportsBase;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -71,7 +73,7 @@ public class TestBaseReports {
 		if (driver == null) {
 			if (config.getProperty("browser").equals("chrome")) {
               try {
-				  System.setProperty("webdriver.chrome.driver", "D:/Downloads/SeleniumWebDrivers/chromedriver.exe");
+				  System.setProperty("webdriver.chrome.driver", "D:/Downloads/SeleniumWebDrivers/80.0.3987.16/chromedriver.exe");
 				  driver = new ChromeDriver();
 				  driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
 				  log.debug("Chrome browser launched");
@@ -109,7 +111,7 @@ public class TestBaseReports {
 			driver.findElement(By.xpath("//*[@id=\'btn_login\']")).click();
             log.debug("Logging in OBIEE " + theTest);
 			log.debug("Inside OBIEE");
-
+/*
 			if (config.getProperty("reportRequested").equals("status summary")
 					|| config.getProperty("reportRequested").equals("routing status")
 					|| config.getProperty("reportRequested").equals("document status details")
@@ -364,13 +366,13 @@ public class TestBaseReports {
 				}
 
 			}
-
+*/
 			driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")),
 					TimeUnit.SECONDS);
 
 			wait = new WebDriverWait(driver, 20);
 			log.debug("TestBaseReorts setup() start");
-			log.debug("TestBaseReorts setup() start");
+
 		}
 
 	}
@@ -403,7 +405,12 @@ public class TestBaseReports {
 
 		} else if (locator.endsWith("_xpath")) {
 
-			driver.findElement(By.xpath(OR.getProperty(locator))).sendKeys(value);
+			WebElement wex = driver.findElement(By.xpath(OR.getProperty(locator)));
+			if (wex != null ) {
+				log.debug("Typing in xpath : " + locator + ". Entered value as " + value);
+				wex.sendKeys(value);
+				log.debug("Show in xpath : " + OR.getProperty(locator) + ". Entered value as " + wex.getAttribute("value"));
+			}
 
 		} else if (locator.endsWith("_id")) {
 
@@ -457,5 +464,30 @@ public class TestBaseReports {
 
 	public void setTheTest(String theTest) {
 		this.theTest = theTest;
+	}
+
+	public void exportToCSV() throws Exception{
+		WebElement ex=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Export")));
+		List<WebElement> l1 = driver.findElements(By.linkText("Export"))  ;
+		log.debug("Data Element size "  + l1.size());
+		int i = 1;
+		for(WebElement a: l1){
+			//if (i++ == 0 )continue;
+			log.debug("Data Element is "  + a.getTagName() );
+			a.click();
+			Thread.sleep(500);
+
+		}
+
+		WebElement data=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Data")));
+
+		data.click();
+		Thread.sleep(500);
+
+		WebElement csv=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("CSV Format")));
+		log.debug("Export Data to CSV " + this.theTest);
+		csv.click();
+		Thread.sleep(500);
+
 	}
 }

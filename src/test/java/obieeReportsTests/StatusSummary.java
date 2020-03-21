@@ -26,18 +26,22 @@ public class StatusSummary extends TestBaseReports {
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void statusSummary(String ssumDoctype, String ssumDocstat, String ssumNumDays, String ssumStatDateStart,
 			String ssumStatDateEnd, String ssumDprtDateStart, String ssumDprtDateEnd, String ssumRtrnDateStart,
-			String ssumRtrnDateEnd, String ssumOrganization) throws InterruptedException {
-        System.out.println("Try StatusSummary");
+			String ssumRtrnDateEnd, String ssumOrganization) throws Exception {
+        log.debug("Try StatusSummary");
 
 		super.setUp();
 		if (config.getProperty("reportRequested").equals("status summary")
 				|| this.getTheTest().equals("StatusSummary")) {
 
+			this.setUp();
 			log.debug("Try StatusSummary 1");
 
+			log.debug("Going into Document & Trip Status section");
 			driver.findElement(By.xpath(OR.getProperty("document_and_trip_status"))).click();
+
 			log.debug("Testing Status Summary Report");
 			driver.findElement(By.xpath(OR.getProperty("status_summary"))).click();
+
 			Thread.sleep(1000);
 			click("ssum_reset_menu_xpath");
 			click("ssum_reset_default_xpath");
@@ -50,7 +54,7 @@ public class StatusSummary extends TestBaseReports {
 			Thread.sleep(500);
 
 
-			System.out.println("Try StatusSummary 2");
+			log.debug("Try StatusSummary 2");
 
 			//type("ssum_stat_date_start_xpath", ssumStatDateStart);
 
@@ -63,49 +67,10 @@ public class StatusSummary extends TestBaseReports {
 			//type("ssum_organization_xpath", ssumOrganization);
 
 			Thread.sleep(500);
-			System.out.println("Status Summary Go");
+			log.debug("Status Summary Go");
 			click("ssum_run_report_xpath");
-			WebElement ex=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Export")));
-			List<WebElement> l1 = driver.findElements(By.linkText("Export"))  ;
-			log.debug("Data Element size "  + l1.size());
-			int i = 1;
-			for(WebElement a: l1){
-                //if (i++ == 0 )continue;
-				log.debug("Data Element is "  + a.getTagName() );
-				a.click();
-				//WebElement data=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Data")));
-				//log.debug("Try Status Summary find Data");
-				//data.click();
-				//Thread.sleep(500);
-
-				//WebElement csv=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("CSV Format")));
-				//log.debug("Try Status Summary find Data");
-				//csv.click();
-				Thread.sleep(500);
-
-			}
-			//WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Export")));
-			//.debug("Try Status Summary find export");
-			//element.click();
-			//Thread.sleep(500);
-
-			WebElement data=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Data")));
-			log.debug("Try Status Summary find Data");
-			data.click();
-			Thread.sleep(500);
-
-			WebElement csv=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("CSV Format")));
-			log.debug("Try Status Summary find Data");
-			csv.click();
-			Thread.sleep(500);
-
-			List<WebElement> l2 = driver.findElements(By.xpath("//*[text()[contains(.,'CSV')]]"))  ;
-			log.debug("Data Element size "  + l2.size());
-			for(WebElement a : l2){
-				log.debug("CSV Element is "  + a.getTagName() );
-				a.click();
-				break;
-			}
+			Thread.sleep(1000);
+            this.exportToCSV();
 
 		} else {
 
