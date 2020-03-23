@@ -48,7 +48,7 @@ public class PendingAirlineCancellation extends TestBaseReports {
 
 			Thread.sleep(2000);
 			this.exportToCSV();
-
+			this.status = true;
 		} else {
 
 			throw new SkipException("not running this report currently");

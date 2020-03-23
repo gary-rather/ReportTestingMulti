@@ -62,6 +62,7 @@ public class AuditTrailGOVCCandEFT extends TestBaseReports {
 
 			this.exportToCSV();
 
+			this.status = true;
 		} else {
 
 			throw new SkipException("not running this report currently");

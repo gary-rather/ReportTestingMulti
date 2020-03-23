@@ -1,7 +1,9 @@
 package obieeReportsTests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.*;
 import org.testng.SkipException;
@@ -30,7 +32,7 @@ public class ReportPERSTEMPO extends TestBaseReports {
 
 			log.debug("Going into Miltary Information section");
 			driver.findElement(By.xpath(OR.getProperty("military_reports"))).click();
-
+			Actions action = new Actions(driver);
 
 			log.debug("Testing PERSTEMPO Report");
 			driver.findElement(By.xpath(OR.getProperty("perstempo"))).click();
@@ -48,7 +50,19 @@ public class ReportPERSTEMPO extends TestBaseReports {
 			type("per_organization_xpath", perOrganization);
 			type("per_start_date_xpath", perPaidDateStart);
 			type("per_end_date_xpath", perPaidDateEnd);
-			type("per_perstempo_code_xpath", perPerstempoCode);
+			//type("per_perstempo_code_xpath", perPerstempoCode);
+
+			WebElement to = driver.findElement(By.xpath("//*[starts-with(@id,'saw_')][contains(@id,'_8_1')]"));
+			to.click();
+
+			action.moveToElement(to, to.getLocation().getX(), to.getLocation().getY());
+			for (int i =0; i < 13 ;i++){
+				to.sendKeys(Keys.ARROW_DOWN);
+				Thread.sleep(200);
+			}
+
+			to.sendKeys(Keys.RETURN);
+			driver.findElement(By.xpath("//body")).click();
 
 			Thread.sleep(1000);
 
@@ -58,7 +72,7 @@ public class ReportPERSTEMPO extends TestBaseReports {
 			Thread.sleep(1000);
 
 			this.exportToCSV();
-
+			this.status = true;
 		} else {
 			
 			throw new SkipException("not running this report currently");

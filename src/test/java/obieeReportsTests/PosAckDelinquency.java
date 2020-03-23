@@ -57,7 +57,7 @@ public class PosAckDelinquency extends TestBaseReports {
 			Thread.sleep(1000);
 
 			this.exportToCSV();
-
+			this.status = true;
 		} else {
 			
 			throw new SkipException("not running this report currently");

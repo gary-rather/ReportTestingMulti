@@ -77,6 +77,7 @@ public class TripDetails extends TestBaseReports {
 			click("td_run_report_xpath");
 			Thread.sleep(1000);
 			this.exportToCSV();
+			this.status = true;
 		} else {
 
 			throw new SkipException("not running this report currently");

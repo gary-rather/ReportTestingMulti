@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.SkipException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import obieeReportsBase.TestBaseReports;
@@ -19,7 +20,16 @@ public class DebtSummaryByMonth extends TestBaseReports {
 		super.setTheTest("DebtSummaryByMonth");
 	}
 
-
+	@AfterClass(alwaysRun = true)
+	public void driverQuitter(){
+		if(driver != null){
+			log.info("Closing browser after TestClass");
+			driver.quit();
+		}else{
+			log.error("Driver is null at AfterClass (TestBase)");
+		}
+		log.info("Teardown - Exiting");
+	}
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void debtSummaryByMonth(String dsbmRunReportBy, String dsbmServiceName, String dsbmSiteName, String dsbmOrganization) throws Exception {
         System.out.println("Try DebtSummaryByMonth");
@@ -49,7 +59,7 @@ public class DebtSummaryByMonth extends TestBaseReports {
 				click("dsbm_report_by_site_name_xpath");
 			} else if (dsbmRunReportBy.equalsIgnoreCase("Organization")) {
 				log.debug("Testing Debt Summary By Month Report 3c");
-				String xp = OR.getProperty("dms_organization_xpath");
+				String xp = OR.getProperty("dsbm_report_by_org_name_xpath");
 				driver.findElement(By.xpath(xp)).click();
 				//click("dsbm_report_by_org_name_xpath");
 			} else {
@@ -93,6 +103,7 @@ public class DebtSummaryByMonth extends TestBaseReports {
 			throw new SkipException("not running this report currently");
 			
 		}
+
 		log.debug("Report DebtSummaryByMonth Complete ##########################");
 	}
 

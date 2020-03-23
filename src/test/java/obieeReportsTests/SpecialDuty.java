@@ -40,7 +40,7 @@ public class SpecialDuty extends TestBaseReports {
 			click("sd_run_report_xpath");
 			Thread.sleep(1000);
 			this.exportToCSV();
-
+			this.status = true;
 		} else {
 			
 			throw new SkipException("not running this report currently");

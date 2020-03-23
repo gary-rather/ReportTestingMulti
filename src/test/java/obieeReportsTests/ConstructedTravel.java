@@ -45,6 +45,7 @@ public class ConstructedTravel extends TestBaseReports {
 			Thread.sleep(3200);
 
 			this.exportToCSV();
+			this.status = true;
 		} else {
 			
 			throw new SkipException("not running this report currently");

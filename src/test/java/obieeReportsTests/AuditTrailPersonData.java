@@ -53,6 +53,7 @@ public class AuditTrailPersonData extends TestBaseReports {
 			click("atp_run_report_xpath");
 
 			this.exportToCSV();
+			this.status = true;
 		} else {
 
 			throw new SkipException("not running this report currently");

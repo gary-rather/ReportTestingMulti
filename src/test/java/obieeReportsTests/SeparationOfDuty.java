@@ -80,7 +80,7 @@ public class SeparationOfDuty extends TestBaseReports {
 			}
 
 		log.debug("Try SeparationOfDuty 8");
-			//csv.click();
+			this.status = true;
 
 			log.debug("SeparationOfDuty Report Finished " + element.getAttribute("Name"));
 		} else {

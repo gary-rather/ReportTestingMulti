@@ -33,6 +33,7 @@ public class TestBaseReports {
 			"D:\\Projects\\ReportTestingMulti\\src\\test\\resources\\obieeReportsExcel\\Test Data Reports-1.xls");
 	public static WebDriverWait wait;
 
+	public boolean status = false;
 	public String theTest = null;
 
 
@@ -65,6 +66,20 @@ public class TestBaseReports {
 		log.debug("TestBaseReports resources() exit " );
 	}
 
+	@AfterClass(alwaysRun = true)
+	public void driverQuitter(){
+		if (status) {
+			if (driver != null) {
+				log.info("Closing browser after TestClass");
+				driver.quit();
+			} else {
+				log.error("Driver is null at AfterClass (TestBase)");
+			}
+		} else {
+			log.debug(this.theTest + " status " + status + " Leave window open");
+		}
+		log.info("Teardown - Exiting");
+	}
 
 	public void setUp() throws InterruptedException {
         log.debug("TestBaseReports setup()  " + theTest);

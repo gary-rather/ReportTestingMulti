@@ -80,6 +80,7 @@ public class DocumentStatusDetails extends TestBaseReports {
 			click("dsd_run_report_xpath");
 
 			this.exportToCSV();
+			this.status = true;
 		} else {
 
 			throw new SkipException("not running this report currently");

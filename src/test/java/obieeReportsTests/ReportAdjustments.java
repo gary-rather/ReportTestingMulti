@@ -25,7 +25,7 @@ public class ReportAdjustments extends TestBaseReports {
 								  String adjTravelerLastName,
 								  String adjTravelerFirstName,
 			                      String adjTravelerPartialSSN) throws Exception {
-            System.out.println("Try reportAdjustments");
+            log.debug("Try reportAdjustments");
 		if (this.getTheTest().equals("ReportAdjustments")) {
 
 			this.setUp();
@@ -42,25 +42,27 @@ public class ReportAdjustments extends TestBaseReports {
 				click("adj_reset_menu_xpath");
 			click("adj_clear_all_data_xpath");
 
-			System.out.println("Try reportAdjustments 2");
+			log.debug("Try reportAdjustments 2");
 			type("adj_organization_xpath", adjOrganization);
 			type("adj_doctype_xpath", adjDoctype);
 			type("adj_adjustment_date_start_xpath", adjAdjustmentDateStart);
 
-			System.out.println("Try reportAdjustments 3");
+			log.debug("Try reportAdjustments 3");
 			type("adj_adjustment_date_end_xpath", adjAdjustmentDateEnd);
 			type("adj_traveler_last_name_xpath", adjTravelerLastName);
 			type("adj_traveler_first_name_xpath", adjTravelerFirstName);
 			type("adj_traveler_partial_ssn_xpath", adjTravelerPartialSSN);
 
-			System.out.println("Try reportAdjustments 5");
+			log.debug("Try reportAdjustments 5");
 			Thread.sleep(1000);
 			click("adj_run_report_xpath");
 
 			Thread.sleep(1000);
-
+			log.debug("Try reportAdjustments 6");
 			this.exportToCSV();
 
+			log.debug("Try reportAdjustments 7");
+			this.status = true;
 		} else {
 
 			throw new SkipException("not running this report currently");

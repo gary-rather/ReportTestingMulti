@@ -50,7 +50,7 @@ public class DebtManagementHistory extends TestBaseReports {
             click("dmh_run_report_xpath");
             Thread.sleep(3000);
             this.exportToCSV();
-
+            this.status = true;
         } else {
 
             throw new SkipException("not running this report currently");

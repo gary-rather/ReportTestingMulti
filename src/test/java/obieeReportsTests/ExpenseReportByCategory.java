@@ -2,6 +2,7 @@ package obieeReportsTests;
 
 import org.openqa.selenium.By;
 import org.testng.SkipException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import obieeReportsBase.TestBaseReports;
@@ -14,6 +15,7 @@ public class ExpenseReportByCategory extends TestBaseReports {
 		log.debug("0 ====== Report ExpenseReportByCategory ======================================="  );
 		super.setTheTest("ExpenseReportByCategory");
 	}
+
 
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
@@ -46,6 +48,7 @@ public class ExpenseReportByCategory extends TestBaseReports {
 			Thread.sleep(2000);
 
 			this.exportToCSV();
+            this.status = true;
 
 		} else {
 

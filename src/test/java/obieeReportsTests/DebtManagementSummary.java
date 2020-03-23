@@ -33,6 +33,8 @@ public class DebtManagementSummary extends TestBaseReports {
 			Thread.sleep(1000);
 			click("dms_reset_menu_xpath");
 			click("dms_clear_all_date_xpath");
+			Thread.sleep(1000);
+
 			type("dms_organization_xpath", dmsOrganization);
 			// Need to click somwhere to get the Apply to show
 			driver.findElement(By.xpath("//body")).click();
@@ -41,6 +43,7 @@ public class DebtManagementSummary extends TestBaseReports {
 			Thread.sleep(1000);
 
 			this.exportToCSV();
+			this.status = true;
 		} else {
 			
 			throw new SkipException("not running this report currently");

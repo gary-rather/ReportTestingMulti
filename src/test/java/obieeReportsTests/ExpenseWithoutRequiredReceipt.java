@@ -38,25 +38,26 @@ public class ExpenseWithoutRequiredReceipt extends TestBaseReports {
 
 
 			Thread.sleep(1000);
-
+            log.debug("Try ExpenseWithoutRequiredReceipt 2");
 			type("ewrr_organization_xpath", ewrrOrganization);
+            Thread.sleep(1000);
 			type("ewrr_approve_date_start_xpath", ewrrApproveDateStart);
 			Thread.sleep(1000);
 			type("ewrr_approve_date_end_xpath", ewrrApproveDateEnd);
 			Thread.sleep(1000);
+            log.debug("Try ExpenseWithoutRequiredReceipt 3");
 			type("ewrr_doctype_xpath", ewrrDoctype);
 			// Need to click somwhere to get the Apply to show
 			//driver.findElement(By.xpath("//body")).click();
 
-
-
-
 			Thread.sleep(1000);
+            log.debug("Try ExpenseWithoutRequiredReceipt 4");
             click("ewrr_run_report_xpath");
             Thread.sleep(1000);
 
+            log.debug("Try ExpenseWithoutRequiredReceipt 5");
             this.exportToCSV();
-
+            this.status = true;
         } else {
 
             throw new SkipException("not running this report currently");

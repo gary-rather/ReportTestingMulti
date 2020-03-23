@@ -48,6 +48,7 @@ public class AuditTrailUserData extends TestBaseReports {
 			click("atu_run_report_xpath");
 			Thread.sleep(500);
 			this.exportToCSV();
+			this.status = true;
 		} else {
 			
 			throw new SkipException("not running this report currently");
