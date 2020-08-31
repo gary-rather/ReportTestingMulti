@@ -110,23 +110,30 @@ public class TestBaseReports {
 			driver.findElement(By.xpath("//*[@id=\'idPassword\']")).sendKeys(config.getProperty("password"));
 			driver.findElement(By.xpath("//*[@id=\'btn_login\']")).click();
             log.debug("Logging in OBIEE " + theTest);
-			log.debug("Inside OBIEE");
 
+			WebElement dashbd = driver.findElement(By.xpath("//*[text() = 'Dashboards']"));
+			dashbd.click();
+			WebElement dtshome = driver.findElement(By.xpath("//*[text() = 'DTS Reports Home']"));
+
+			driver.findElement(By.xpath("//*[text() = 'DTS Reports Home']")).click();
+
+			log.debug("Inside OBIEE");
+            String repReq = config.getProperty("reportRequested");
 			if (config.getProperty("reportRequested").equals("status summary")
 					|| config.getProperty("reportRequested").equals("routing status")
 					|| config.getProperty("reportRequested").equals("document status details")
 					|| config.getProperty("reportRequested").equals("traveler status")
 					|| config.getProperty("reportRequested").equals("unsubmitted voucher")
 					|| config.getProperty("reportRequested").equals("pending airline cancellation")
-					|| theTest.equals("RoutingStatus")
-					//|| theTest.equals("StatusSummary")
+					|| config.getProperty("reportRequested").equals("RoutingStatus")
+					|| theTest.equals("StatusSummary")
 					|| theTest.equals("DocumentStatusDetail")
 					|| theTest.equals("UnsubmittedVoucher")
 					|| theTest.equals("PendingAirlineCancellation")) {
 
 				log.debug("Going into Document & Trip Status section");
 				log.debug("Going into Document & Trip Status section");
-				driver.findElement(By.xpath(OR.getProperty("document_and_trip_status"))).click();
+				driver.findElement(By.xpath("//*[text() = 'Document & Trip Status Dashboard']")).click();
 
 				if (config.getProperty("reportRequested").equals("status summary")
 						|| theTest.equals("StatusSummary")) {
