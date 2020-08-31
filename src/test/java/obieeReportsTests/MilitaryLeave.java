@@ -1,6 +1,5 @@
 package obieeReportsTests;
 
-import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,27 +10,19 @@ public class MilitaryLeave extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		log.debug("0 ====== Report MilitaryLeave ======================================="  );
+		System.out.println("Report MilitaryLeave setTheTest: "  );
 		super.setTheTest("MilitaryLeave");
 	}
 
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void militaryLeave(String milDoctype, String milOrganization, String milApproveDateStart, String milApproveDateEnd) throws Exception {
+	public void militaryLeave(String milDoctype, String milOrganization, String milApproveDateStart, String milApproveDateEnd) {
 
-		if (this.getTheTest().equals("MilitaryLeave")) {
+		if (config.getProperty("reportRequested").equals("military leave")
+				|| this.getTheTest().equals("MilitaryLeave")) {
 
-			this.setUp();
+			System.out.println("Try MilitaryLeave 1");
 
-			log.debug("Try MilitaryLeave 1");
-
-			log.debug("Going into Miltary Information section");
-			driver.findElement(By.xpath(OR.getProperty("military_reports"))).click();
-
-			log.debug("Testing Military Leave Report");
-			driver.findElement(By.xpath(OR.getProperty("military_leave"))).click();
-
-			Thread.sleep(1000);
 			click("mil_reset_menu_xpath");
 			click("mil_clear_all_data_xpath");
 			
@@ -41,16 +32,13 @@ public class MilitaryLeave extends TestBaseReports {
 			type("mil_end_date_xpath", milApproveDateEnd);
 			
 			click("mil_run_report_xpath");
-			Thread.sleep(1000);
-
-			//this.exportToCSV();
 
 		} else {
 			
 			throw new SkipException("not running this report currently");
 			
 		}
-			log.debug("Report MilitaryLeave Complete ##########################");
+
 	}
 
 }

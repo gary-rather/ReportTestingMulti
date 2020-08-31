@@ -3,7 +3,6 @@ package obieeReportsBase;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +14,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -29,11 +27,11 @@ public class TestBaseReports {
 	public static Properties OR = new Properties();
 	public static FileInputStream fis;
 	public static Logger log = Logger.getLogger("TestBaseReports");
+	public static String user_dir = System.getProperty("user.dir");
 	public static ExcelReader1 excel = new ExcelReader1(
-			"D:\\Projects\\ReportTestingMulti\\src\\test\\resources\\obieeReportsExcel\\Test Data Reports-1.xls");
+			user_dir + "\\src\\test\\resources\\obieeReportsExcel\\Test Data Reports-1.xls");
 	public static WebDriverWait wait;
 
-	public boolean status = false;
 	public String theTest = null;
 
 
@@ -42,7 +40,7 @@ public class TestBaseReports {
 		log.debug("TestBaseReports resources() start " );
 
 		try {
-			fis = new FileInputStream("D:\\Projects\\ReportTestingMulti\\src\\test\\resources\\obieeReportsProperties\\config.properties");
+			fis = new FileInputStream(user_dir + "\\src\\test\\resources\\obieeReportsProperties\\config.properties");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -53,7 +51,7 @@ public class TestBaseReports {
 		}
 
 		try {
-			fis = new FileInputStream("D:\\Projects\\ReportTestingMulti\\src\\test\\resources\\obieeReportsProperties\\OR.properties");
+			fis = new FileInputStream(user_dir + "\\src\\test\\resources\\obieeReportsProperties\\OR.properties");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -66,20 +64,6 @@ public class TestBaseReports {
 		log.debug("TestBaseReports resources() exit " );
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void driverQuitter(){
-		if (status) {
-			if (driver != null) {
-				log.info("Closing browser after TestClass");
-				driver.quit();
-			} else {
-				log.error("Driver is null at AfterClass (TestBase)");
-			}
-		} else {
-			log.debug(this.theTest + " status " + status + " Leave window open");
-		}
-		log.info("Teardown - Exiting");
-	}
 
 	public void setUp() throws InterruptedException {
         log.debug("TestBaseReports setup()  " + theTest);
@@ -88,7 +72,8 @@ public class TestBaseReports {
 		if (driver == null) {
 			if (config.getProperty("browser").equals("chrome")) {
               try {
-				  System.setProperty("webdriver.chrome.driver", "D:/Downloads/SeleniumWebDrivers/80.0.3987.16/chromedriver.exe");
+				  System.setProperty("webdriver.chrome.driver", user_dir + "/src/test/resources/SeleniumWebDrivers/chromedriver.exe");
+
 				  driver = new ChromeDriver();
 				  driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
 				  log.debug("Chrome browser launched");
@@ -99,15 +84,15 @@ public class TestBaseReports {
 			  }
 
 			} else if (config.getProperty("browser").equals("edge")) {
+				System.setProperty("webdriver.chrome.driver", user_dir + "/src/test/resources/SeleniumWebDrivers/edgedriver.exe");
 
-				System.setProperty("webdriver.edge.driver", "D:/Downloads/SeleniumWebDrivers/edgedriver.exe");
 				driver = new EdgeDriver();
 				log.debug("Edge browser launched");
 
 			} else if (config.getProperty("browser").equals("firefox")) {
 
-				System.setProperty("webdriver.gecko.driver",
-						"D:/Downloads/SeleniumWebDrivers/geckodriver.exe");
+				System.setProperty("webdriver.chrome.driver", user_dir + "/src/test/resources/SeleniumWebDrivers/geckodriver.exe");
+
 				driver = new FirefoxDriver();
 				log.debug("Firefox browser launched");
 
@@ -126,7 +111,7 @@ public class TestBaseReports {
 			driver.findElement(By.xpath("//*[@id=\'btn_login\']")).click();
             log.debug("Logging in OBIEE " + theTest);
 			log.debug("Inside OBIEE");
-/*
+
 			if (config.getProperty("reportRequested").equals("status summary")
 					|| config.getProperty("reportRequested").equals("routing status")
 					|| config.getProperty("reportRequested").equals("document status details")
@@ -381,13 +366,13 @@ public class TestBaseReports {
 				}
 
 			}
-*/
+
 			driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")),
 					TimeUnit.SECONDS);
 
 			wait = new WebDriverWait(driver, 20);
 			log.debug("TestBaseReorts setup() start");
-
+			log.debug("TestBaseReorts setup() start");
 		}
 
 	}
@@ -420,12 +405,7 @@ public class TestBaseReports {
 
 		} else if (locator.endsWith("_xpath")) {
 
-			WebElement wex = driver.findElement(By.xpath(OR.getProperty(locator)));
-			if (wex != null ) {
-				log.debug("Typing in xpath : " + locator + ". Entered value as " + value);
-				wex.sendKeys(value);
-				log.debug("Show in xpath : " + OR.getProperty(locator) + ". Entered value as " + wex.getAttribute("value"));
-			}
+			driver.findElement(By.xpath(OR.getProperty(locator))).sendKeys(value);
 
 		} else if (locator.endsWith("_id")) {
 
@@ -479,30 +459,5 @@ public class TestBaseReports {
 
 	public void setTheTest(String theTest) {
 		this.theTest = theTest;
-	}
-
-	public void exportToCSV() throws Exception{
-		WebElement ex=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Export")));
-		List<WebElement> l1 = driver.findElements(By.linkText("Export"))  ;
-		log.debug("Data Element size "  + l1.size());
-		int i = 1;
-		for(WebElement a: l1){
-			//if (i++ == 0 )continue;
-			log.debug("Data Element is "  + a.getTagName() );
-			a.click();
-			Thread.sleep(500);
-
-		}
-
-		WebElement data=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Data")));
-
-		data.click();
-		Thread.sleep(500);
-
-		WebElement csv=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("CSV Format")));
-		log.debug("Export Data to CSV " + this.theTest);
-		csv.click();
-		Thread.sleep(500);
-
 	}
 }

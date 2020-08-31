@@ -17,7 +17,7 @@ public class DocumentStatusDetails extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		log.debug("0 ====== Report DocumentStatusDetails ======================================="  );
+		System.out.println("Report DocumentStatusDetails setTheTest: "  );
 		super.setTheTest("DocumentStatusDetails");
 	}
 
@@ -25,24 +25,31 @@ public class DocumentStatusDetails extends TestBaseReports {
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void documentStatusDetails(String dsdDoctype, String dsdDocstat, String dsdDaysSinceStatChange,
 			String dsdStatDateStart, String dsdStatDateEnd, String dsdDprtDateStart, String dsdDprtDateEnd,
-			String dsdRtrnDateStart, String dsdRtrnDateEnd, String dsdAgency, String dsdOrganization) throws InterruptedException, Exception {
+			String dsdRtrnDateStart, String dsdRtrnDateEnd, String dsdAgency, String dsdOrganization) throws InterruptedException {
 
-		if (this.getTheTest().equals("DocumentStatusDetails")) {
+		if (config.getProperty("reportRequested").equals("document status details")
+				|| this.getTheTest().equals("DocumentStatusDetails")) {
 
-			this.setUp();
-
-			log.debug("Going into Document & Trip Status section");
-			log.debug("Going into Document & Trip Status section");
-			driver.findElement(By.xpath(OR.getProperty("document_and_trip_status"))).click();
-
-				log.debug("Testing Document Status Details Report");
-				driver.findElement(By.xpath(OR.getProperty("document_status_details"))).click();
-
-
-				log.debug("Try DocumentStatusDetails 1");
+			System.out.println("Try DocumentStatusDetails 1");
 
 			click("dsd_reset_menu_xpath");
 			click("dsd_clear_all_data_xpath");
+
+			//List<WebElement> l1 = driver.findElements(By.xpath("//*[starts-with(@id,'saw_')][contains(@id,'_3_1_dropdownIcon')]"));
+            //l1.get(0).click();
+
+
+			//List<WebElement> l2 = driver.findElements(By.xpath("//*[starts-with(@id,'saw_')][contains(@id,'_3_1')]"));
+			//l1.get(0).getAttribute("name");
+			//for(WebElement we : l2) {
+			//	System.out.println("List of elements " + we.getTagName() + " " + we.getAttribute("ID"));
+			//}
+			//List<WebElement> l3 = driver.findElements(By.xpath("//*[starts-with(@id,'saw_')][contains(@id,'_5_1')]"));
+			//l1.get(0).getAttribute("name");
+
+			//for(WebElement we : l3) {
+			//	System.out.println("List of elements " + we.getTagName() + " " + we.getAttribute("ID"));
+			//}
 
 
 			type("dsd_doctype_xpath", dsdDoctype);
@@ -51,42 +58,40 @@ public class DocumentStatusDetails extends TestBaseReports {
 
 
 
-			log.debug("dsd_stat_date " + dsdStatDateStart);
+			System.out.println("dsd_stat_date " + dsdStatDateStart);
 			type("dsd_stat_date_start_xpath", dsdStatDateStart);
 
 
-			log.debug("dsdStatDateEnd " + dsdStatDateEnd);
+			System.out.println("dsdStatDateEnd " + dsdStatDateEnd);
 			type("dsd_stat_date_end_xpath", dsdStatDateEnd);
 
-			log.debug("dsd_dprt_date " + dsdDprtDateStart);
+			System.out.println("dsd_dprt_date " + dsdDprtDateStart);
 			type("dsd_dprt_date_start_xpath", dsdDprtDateStart);
 
-			log.debug("dsdDprtDateEnd " + dsdDprtDateEnd);
+			System.out.println("dsdDprtDateEnd " + dsdDprtDateEnd);
 			type("dsd_dprt_date_end_xpath", dsdDprtDateEnd);
 
 
-			log.debug("dsd_rtrn_date");
+			System.out.println("dsd_rtrn_date");
 			type("dsd_rtrn_date_start_xpath", dsdRtrnDateStart);
 			type("dsd_rtrn_date_end_xpath", dsdRtrnDateEnd);
 
-			log.debug("dsd_agency_xpath");
+			System.out.println("dsd_agency_xpath");
 			type("dsd_agency_xpath", dsdAgency);
 
 
-			log.debug("dsd_organization_xpath");
+			System.out.println("dsd_organization_xpath");
 			type("dsd_organization_xpath", dsdOrganization);
 
 			Thread.sleep(2000);
 			click("dsd_run_report_xpath");
 
-			this.exportToCSV();
-			this.status = true;
 		} else {
 
 			throw new SkipException("not running this report currently");
 
 		}
-		log.debug("Report DocumentStatusDetails Complete ##########################");
+
 	}
 
 }

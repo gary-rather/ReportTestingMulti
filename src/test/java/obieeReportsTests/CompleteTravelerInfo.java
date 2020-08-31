@@ -18,30 +18,37 @@ public class CompleteTravelerInfo extends TestBaseReports {
 
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("0 ====== Report CompleteTravelerInfo ======================================="  );
+		log.debug("2 ====== Report CompleteTravelerInfo ======================================="  );
 		super.setTheTest("CompleteTravelerInfo");
+		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void completeTravelerInfo(String ctiSetOrganization, String ctiSetNextTravelDateStart,
 			String ctiSetNextTravelDateEnd, String ctiSetShowFullSSN, String ctiSetShowOnlyTravelersOnTDY) throws InterruptedException {
        runBeforeClass();
-
-		log.debug("Report CompleteTravelerInfo: " + this.getTheTest() );
 		super.setUp();
 
+		String theTestValue  = this.getTheTest();
+		log.debug("Report CompleteTravelerInfo: " + this.getTheTest() );
+		log.debug("Report CompleteTravelerInfo: " + config.getProperty("reportRequested"));
+		log.debug("Going into Traveler & User Information section");
+		//WebElement ti = driver.findElement(By.xpath("//span[text()[contains(.,'Traveler & User Information Dashboard')]]"));
+		//ti.click();
 
-		if (this.getTheTest().equals("CompleteTravelerInfo") ) {
+		log.debug("Try completeTravelerInfo  0");
+		//driver.findElement(By.xpath(OR.getProperty("complete_traveler_info"))).click();
 
-			log.debug("Try completeTravelerInfo 0");
-			WebElement ti = driver.findElement(By.xpath("//span[text()[contains(.,'Traveler & User Information Dashboard')]]"));
-			ti.click();
+        log.debug("Try completeTravelerInfo theTestValue: " + theTestValue);
+		if (config.getProperty("reportRequested").equals("cti traveler details")
+				|| config.getProperty("reportRequested").equals("cti user details")
+				|| config.getProperty("reportRequested").equals("cti personal details")
+				|| config.getProperty("reportRequested").equals("cti account details")
+				|| this.getTheTest().equals("CompleteTravelerInfo")
+				) {
 
-			Thread.sleep(500);
 			log.debug("Try completeTravelerInfo 1");
-			driver.findElement(By.xpath(OR.getProperty("complete_traveler_info"))).click();
-			Thread.sleep(500);
-			log.debug("Try completeTravelerInfo 2");
+			log.debug("Try completeTravelerInfo 1");
 			click("cti_set_reset_menu_xpath");
 			click("cti_set_clear_all_data_xpath");
 

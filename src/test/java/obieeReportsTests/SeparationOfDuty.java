@@ -20,28 +20,21 @@ public class SeparationOfDuty extends TestBaseReports {
 
 	@BeforeClass
 	public void runBeforeClass(){
-		log.debug("0 ====== Report SeparationOfDuty ======================================="  );
+		log.debug("2 ====== Report SeparationOfDuty ======================================="  );
 		super.setTheTest("SeparationOfDuty");
+		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void separationOfDuty(String sodOrganization, String sodApproveDateStart, String sodApproveDateEnd) throws Exception {
+	public void separationOfDuty(String sodOrganization, String sodApproveDateStart, String sodApproveDateEnd) throws InterruptedException {
 		System.out.println("Report SeparationOfDuty: " + this.getTheTest() );
 		super.setUp();
 		log.debug("Going into Traveler & User Information section");
 
-		if (this.getTheTest().equals("SeparationOfDuty")) {
-
-			this.setUp();
+		if (config.getProperty("reportRequested").equals("separation of duty")
+				|| this.getTheTest().equals("SeparationOfDuty")) {
 
 			log.debug("Try SeparationOfDuty 0");
-			WebElement ti = driver.findElement(By.xpath("//span[text()[contains(.,'Traveler & User Information Dashboard')]]"));
-			ti.click();
-			//driver.findElement(By.xpath(OR.getProperty("traveler_and_user_info"))).click();
-
-
-				log.debug("Testing Separation Of Duty Report");
-				driver.findElement(By.xpath(OR.getProperty("separation_of_duty"))).click();
 
 			click("sod_reset_menu_xpath");
 			click("sod_clear_all_data_xpath");
@@ -80,7 +73,7 @@ public class SeparationOfDuty extends TestBaseReports {
 			}
 
 		log.debug("Try SeparationOfDuty 8");
-			this.status = true;
+			//csv.click();
 
 			log.debug("SeparationOfDuty Report Finished " + element.getAttribute("Name"));
 		} else {

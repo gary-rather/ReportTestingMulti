@@ -1,6 +1,5 @@
 package obieeReportsTests;
 
-import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,45 +10,30 @@ public class DebtManagementSummary extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		log.debug("0 ====== Report DebtManagementSummary ======================================="  );
+		System.out.println("Report DebtManagementSummary setTheTest: "  );
 		super.setTheTest("DebtManagementSummary");
 	}
 
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void debtManagementSummary(String dmsOrganization) throws Exception {
+	public void debtManagementSummary(String dmsOrganization) {
 
-		if (this.getTheTest().equals("DebtManagementSummary")) {
+		if (config.getProperty("reportRequested").equals("debt management summary")
+				|| this.getTheTest().equals("DebtManagementSummary")) {
 
-			this.setUp();
+			System.out.println("Try DebtManagementSummary 1");
 
-			log.debug("Going into Debt Management section ");
-			driver.findElement(By.xpath(OR.getProperty("debt_management"))).click();
-			Thread.sleep(500);
-
-			log.debug("Testing Debt Management Summary Report");
-			driver.findElement(By.xpath(OR.getProperty("debt_management_summary"))).click();
-
-			Thread.sleep(1000);
 			click("dms_reset_menu_xpath");
 			click("dms_clear_all_date_xpath");
-			Thread.sleep(1000);
-
 			type("dms_organization_xpath", dmsOrganization);
-			// Need to click somwhere to get the Apply to show
-			driver.findElement(By.xpath("//body")).click();
-			Thread.sleep(1000);
 			click("dms_run_report_xpath");
-			Thread.sleep(1000);
 
-			this.exportToCSV();
-			this.status = true;
 		} else {
 			
 			throw new SkipException("not running this report currently");
 
 		}
-		log.debug("Report DebtManagementHistory Complete ##########################");
+
 	}
 
 }

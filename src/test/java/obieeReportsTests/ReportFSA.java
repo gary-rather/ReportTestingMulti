@@ -1,6 +1,5 @@
 package obieeReportsTests;
 
-import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,26 +10,18 @@ public class ReportFSA extends TestBaseReports {
 
 	@BeforeClass
 	public void setTheTest(){
-		log.debug("0 ====== Report ReportFSA ======================================="  );
+		System.out.println("Report ReportFSA setTheTest: "  );
 		super.setTheTest("ReportFSA");
 	}
 
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void reportFSA(String fsaDoctype, String fsaOrganization, String fsaApproveDateStart, String fsaApproveDateEnd) throws Exception {
+	public void reportFSA(String fsaDoctype, String fsaOrganization, String fsaApproveDateStart, String fsaApproveDateEnd) {
 		
-		if(this.getTheTest().equals("ReportFSA")) {
+		if(config.getProperty("reportRequested").equals("fsa")
+				|| this.getTheTest().equals("ReportFSA")) {
 
-			this.setUp();
-
-
-			log.debug("Try ReportFSA 1");
-			log.debug("Going into Miltary Information section");
-			driver.findElement(By.xpath(OR.getProperty("military_reports"))).click();
-
-
-			log.debug("Testing FSA Report");
-			driver.findElement(By.xpath(OR.getProperty("fsa"))).click();
+			System.out.println("Try ReportFSA 1");
 
 			click("fsa_reset_menu_xpath");
 			click("fsa_clear_all_data_xpath");
@@ -39,18 +30,15 @@ public class ReportFSA extends TestBaseReports {
 			type("fsa_doctype_xpath", fsaDoctype);
 			type("fsa_start_date_xpath", fsaApproveDateStart);
 			type("fsa_end_date_xpath", fsaApproveDateEnd);
-			Thread.sleep(1000);
+			
 			click("fsa_run_report_xpath");
-			Thread.sleep(1000);
-
-			this.exportToCSV();
-			this.status = true;
+			
 		} else {
 			
 			throw new SkipException("not running this report currently");
 			
 		}
-		log.debug("Report ReportFSA Complete ##########################");
+		
 	}
 
 }
