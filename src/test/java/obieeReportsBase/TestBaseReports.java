@@ -22,13 +22,15 @@ import obieeReportsUtilities.ExcelReader1;
 
 public class TestBaseReports {
 
+
 	public static WebDriver driver;
 	public static Properties config = new Properties();
 	public static Properties OR = new Properties();
 	public static FileInputStream fis;
 	public static Logger log = Logger.getLogger("TestBaseReports");
+	public static String user_dir = System.getProperty("user.dir");
 	public static ExcelReader1 excel = new ExcelReader1(
-			"D:\\Projects\\ReportTestingMulti\\src\\test\\resources\\obieeReportsExcel\\Test Data Reports-1.xls");
+			user_dir + "\\src\\test\\resources\\obieeReportsExcel\\Test Data Reports-1.xls");
 	public static WebDriverWait wait;
 
 	public String theTest = null;
@@ -39,7 +41,7 @@ public class TestBaseReports {
 		log.debug("TestBaseReports resources() start " );
 
 		try {
-			fis = new FileInputStream("D:\\Projects\\ReportTestingMulti\\src\\test\\resources\\obieeReportsProperties\\config.properties");
+			fis = new FileInputStream(user_dir + "\\src\\test\\resources\\obieeReportsProperties\\config.properties");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -50,7 +52,7 @@ public class TestBaseReports {
 		}
 
 		try {
-			fis = new FileInputStream("D:\\Projects\\ReportTestingMulti\\src\\test\\resources\\obieeReportsProperties\\OR.properties");
+			fis = new FileInputStream(user_dir + "\\src\\test\\resources\\obieeReportsProperties\\OR.properties");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +73,8 @@ public class TestBaseReports {
 		if (driver == null) {
 			if (config.getProperty("browser").equals("chrome")) {
               try {
-				  System.setProperty("webdriver.chrome.driver", "D:/Downloads/SeleniumWebDrivers/chromedriver.exe");
+				  System.setProperty("webdriver.chrome.driver", user_dir + "/src/test/resources/SeleniumWebDrivers/chromedriver.exe");
+
 				  driver = new ChromeDriver();
 				  driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
 				  log.debug("Chrome browser launched");
@@ -82,15 +85,15 @@ public class TestBaseReports {
 			  }
 
 			} else if (config.getProperty("browser").equals("edge")) {
+				System.setProperty("webdriver.chrome.driver", user_dir + "/src/test/resources/SeleniumWebDrivers/edgedriver.exe");
 
-				System.setProperty("webdriver.edge.driver", "D:/Downloads/SeleniumWebDrivers/edgedriver.exe");
 				driver = new EdgeDriver();
 				log.debug("Edge browser launched");
 
 			} else if (config.getProperty("browser").equals("firefox")) {
 
-				System.setProperty("webdriver.gecko.driver",
-						"D:/Downloads/SeleniumWebDrivers/geckodriver.exe");
+				System.setProperty("webdriver.chrome.driver", user_dir + "/src/test/resources/SeleniumWebDrivers/geckodriver.exe");
+
 				driver = new FirefoxDriver();
 				log.debug("Firefox browser launched");
 
@@ -108,23 +111,30 @@ public class TestBaseReports {
 			driver.findElement(By.xpath("//*[@id=\'idPassword\']")).sendKeys(config.getProperty("password"));
 			driver.findElement(By.xpath("//*[@id=\'btn_login\']")).click();
             log.debug("Logging in OBIEE " + theTest);
-			log.debug("Inside OBIEE");
 
+			WebElement dashbd = driver.findElement(By.xpath("//*[text() = 'Dashboards']"));
+			dashbd.click();
+			WebElement dtshome = driver.findElement(By.xpath("//*[text() = 'DTS Reports Home']"));
+
+			driver.findElement(By.xpath("//*[text() = 'DTS Reports Home']")).click();
+
+			log.debug("Inside OBIEE");
+            String repReq = config.getProperty("reportRequested");
 			if (config.getProperty("reportRequested").equals("status summary")
 					|| config.getProperty("reportRequested").equals("routing status")
 					|| config.getProperty("reportRequested").equals("document status details")
 					|| config.getProperty("reportRequested").equals("traveler status")
 					|| config.getProperty("reportRequested").equals("unsubmitted voucher")
 					|| config.getProperty("reportRequested").equals("pending airline cancellation")
-					|| theTest.equals("RoutingStatus")
-					//|| theTest.equals("StatusSummary")
+					|| config.getProperty("reportRequested").equals("RoutingStatus")
+					|| theTest.equals("StatusSummary")
 					|| theTest.equals("DocumentStatusDetail")
 					|| theTest.equals("UnsubmittedVoucher")
 					|| theTest.equals("PendingAirlineCancellation")) {
 
 				log.debug("Going into Document & Trip Status section");
 				log.debug("Going into Document & Trip Status section");
-				driver.findElement(By.xpath(OR.getProperty("document_and_trip_status"))).click();
+				driver.findElement(By.xpath("//*[text() = 'Document & Trip Status Dashboard']")).click();
 
 				if (config.getProperty("reportRequested").equals("status summary")
 						|| theTest.equals("StatusSummary")) {
