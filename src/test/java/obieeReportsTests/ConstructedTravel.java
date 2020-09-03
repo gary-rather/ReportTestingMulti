@@ -20,7 +20,7 @@ public class ConstructedTravel extends TestBaseReports {
 	public void constructedTravel(String ctDoctype, String ctOrganization, String ctApproveDateStart,
 			String ctApproveDateEnd) {
 		System.out.println("Try constructedTravel");
-		if (config.getProperty("reportRequested").equals("constructed travel")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("constructed travel")
 				|| this.getTheTest().equals("ConstructedTravel")) {
 
 			System.out.println("Try ConstructedTravel 1");

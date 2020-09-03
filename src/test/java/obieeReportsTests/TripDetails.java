@@ -30,7 +30,7 @@ public class TripDetails extends TestBaseReports {
 			String tdStatusDateEnd, String tdDprtDateStart, String tdDprtDateEnd, String tdRtrnDateStart,
 			String tdRtrnDateEnd, String tdOrganization) {
 
-		if (config.getProperty("reportRequested").equals("trip details")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("trip details")
 				|| this.getTheTest().equals("TripDetails")) {
 
             System.out.println("Trip Details 1");

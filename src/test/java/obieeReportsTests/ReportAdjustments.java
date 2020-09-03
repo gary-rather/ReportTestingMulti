@@ -15,13 +15,13 @@ public class ReportAdjustments extends TestBaseReports {
 		super.setTheTest("ReportAdjustments");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void reportAdjustments(String adjOrganization, String adjDoctype, String adjAdjustmentDateStart,
 			String adjAdjustmentDateEnd, String adjTravelerLastName, String adjTravelerFirstName,
 			String adjTravelerPartialSSN) {
-            System.out.println("Try reportAdjustments");
-		if (config.getProperty("reportRequested").equals("adjustments")
+
+		System.out.println("Try reportAdjustments");
+		if (config.getProperty("reportRequested").equalsIgnoreCase("adjustments")
 				|| this.getTheTest().equals("ReportAdjustments")) {
 
 			System.out.println("Try reportAdjustments 1");
@@ -33,14 +33,14 @@ public class ReportAdjustments extends TestBaseReports {
 			type("adj_organization_xpath", adjOrganization);
 			type("adj_doctype_xpath", adjDoctype);
 			type("adj_adjustment_date_start_xpath", adjAdjustmentDateStart);
+			type("adj_adjustment_date_end_xpath", adjAdjustmentDateEnd);
 
 			System.out.println("Try reportAdjustments 3");
-			type("adj_adjustment_date_end_xpath", adjAdjustmentDateEnd);
 			type("adj_traveler_last_name_xpath", adjTravelerLastName);
 			type("adj_traveler_first_name_xpath", adjTravelerFirstName);
 			type("adj_traveler_partial_ssn_xpath", adjTravelerPartialSSN);
 
-			System.out.println("Try reportAdjustments 5");
+			System.out.println("Try reportAdjustments 4");
 			click("adj_run_report_xpath");
 
 		} else {

@@ -14,11 +14,10 @@ public class ReportFSA extends TestBaseReports {
 		super.setTheTest("ReportFSA");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void reportFSA(String fsaDoctype, String fsaOrganization, String fsaApproveDateStart, String fsaApproveDateEnd) {
 		
-		if(config.getProperty("reportRequested").equals("fsa")
+		if(config.getProperty("reportRequested").equalsIgnoreCase("fsa")
 				|| this.getTheTest().equals("ReportFSA")) {
 
 			System.out.println("Try ReportFSA 1");
@@ -28,8 +27,8 @@ public class ReportFSA extends TestBaseReports {
 			
 			type("fsa_organization_xpath", fsaOrganization);
 			type("fsa_doctype_xpath", fsaDoctype);
-			type("fsa_start_date_xpath", fsaApproveDateStart);
-			type("fsa_end_date_xpath", fsaApproveDateEnd);
+			type("fsa_approve_date_start_xpath", fsaApproveDateStart);
+			type("fsa_approve_date_end_xpath", fsaApproveDateEnd);
 			
 			click("fsa_run_report_xpath");
 			

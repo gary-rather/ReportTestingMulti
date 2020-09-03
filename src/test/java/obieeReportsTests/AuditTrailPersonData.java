@@ -33,7 +33,7 @@ public class AuditTrailPersonData extends TestBaseReports {
 		driver.findElement(By.xpath(OR.getProperty("audit_trail_person_data"))).click();
 
 		System.out.println("Try auditTrailPersonData");
-		if (config.getProperty("reportRequested").equals("audit trail person data")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("audit trail person data")
 				|| this.getTheTest().equals("AuditTrailPersonData")) {
 
 			System.out.println("Try auditTrailPersonData 1");

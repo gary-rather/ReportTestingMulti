@@ -14,12 +14,11 @@ public class ReportOCONUS extends TestBaseReports {
 		super.setTheTest("ReportOCONUS");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void reportOCONUS(String ocOrganization, String ocDoctype, String ocCivMilIndicator,
 			String ocApproveDateStart, String ocApproveDateEnd) {
         System.out.println("Try ReportOCONUS");
-		if (config.getProperty("reportRequested").equals("oconus")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("oconus")
 				|| this.getTheTest().equals("ReportOCONUS")) {
 
 			System.out.println("Try ReportOCONUS 1");
@@ -30,8 +29,8 @@ public class ReportOCONUS extends TestBaseReports {
 			type("oc_organization_xpath", ocOrganization);
 			type("oc_doctype_xpath", ocDoctype);
 			type("oc_civ_mil_ind_xpath", ocCivMilIndicator);
-			type("oc_start_date_xpath", ocApproveDateStart);
-			type("oc_end_date_xpath", ocApproveDateEnd);
+			type("oc_approve_date_start_xpath", ocApproveDateStart);
+			type("oc_approve_date_end_xpath", ocApproveDateEnd);
 
 			click("oc_run_report_xpath");
 

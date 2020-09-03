@@ -15,11 +15,11 @@ public class PendingAirlineCancellation extends TestBaseReports {
 		super.setTheTest("PendingAirlineCancellation");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void pendingAirlineCancellation(String pacHrsToDprtStart, String pacHrsToDprtEnd, String pacAgencyCode, String pacOrgCode) {
+	public void pendingAirlineCancellation(String pacHrsToDprt) {
+
         System.out.println("Try PendingAirlineCancellation");
-		if (config.getProperty("reportRequested").equals("pending airline cancellation")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("pending airline cancellation")
 				|| this.getTheTest().equals("PendingAirlineCancellation")) {
 
 			System.out.println("Try PendingAirlineCancellation 1");
@@ -28,10 +28,9 @@ public class PendingAirlineCancellation extends TestBaseReports {
 			click("pac_clear_all_data_xpath");
 
 			System.out.println("Try PendingAirlineCancellation 2");
-			type("pac_hrs_to_dprt_start_xpath", pacHrsToDprtStart);
-			type("pac_hrs_to_dprt_end_xpath", pacHrsToDprtEnd);
-			type("pac_agency_code_xpath", pacAgencyCode);
-			type("pac_org_code_xpath", pacOrgCode);
+			click("pac_organization_field_xpath");
+			click("pac_organization_all_selection_xpath");
+			type("pac_hrs_to_dprt_xpath", pacHrsToDprt);
 
 			System.out.println("Try PendingAirlineCancellation 3");
 			click("pac_run_report_xpath");

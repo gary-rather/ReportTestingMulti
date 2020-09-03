@@ -20,7 +20,7 @@ public class AuditTrailUserData extends TestBaseReports {
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void auditTrailUserData(String atuChangePersonSSNPartial, String atuChangeDateStart, String atuChangeDateEnd) {
 		System.out.println("Try auditTrailUserData");
-		if (config.getProperty("reportRequested").equals("audit trail user data")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("audit trail user data")
 				|| this.getTheTest().equals("AuditTrailUserData")) {
 
 			System.out.println("Try auditTrailUserData 1");

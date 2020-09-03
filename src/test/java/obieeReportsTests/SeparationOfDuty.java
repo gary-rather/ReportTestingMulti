@@ -31,7 +31,7 @@ public class SeparationOfDuty extends TestBaseReports {
 		super.setUp();
 		log.debug("Going into Traveler & User Information section");
 
-		if (config.getProperty("reportRequested").equals("separation of duty")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("separation of duty")
 				|| this.getTheTest().equals("SeparationOfDuty")) {
 
 			log.debug("Try SeparationOfDuty 0");
@@ -56,7 +56,6 @@ public class SeparationOfDuty extends TestBaseReports {
 
 			//Actions action = new Actions(driver);
 			//WebElement we = driver.findElements(By.xpath("//*[text()[contains(.,'Data')]]\""));
-
 
 			//action.moveToElement(we).moveToElement(driver.findElement(By.xpath("//*[text()[contains(.,'CSV')]]"))).click().build().perform();
             List<WebElement> l1 = driver.findElements(By.xpath("//td[text()[contains(.,'Data')]]"))  ;

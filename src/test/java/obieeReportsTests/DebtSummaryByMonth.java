@@ -14,11 +14,11 @@ public class DebtSummaryByMonth extends TestBaseReports {
 		super.setTheTest("DebtSummaryByMonth");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void debtSummaryByMonth(String dsbmRunReportBy, String dsbmServiceName, String dsbmSiteName, String dsbmOrganization) {
+	public void debtSummaryByMonth(String dsbmRunReportBy, String dsbmServiceName, String dsbmSiteName,
+								   String dsbmOrganization) {
         System.out.println("Try DebtSummaryByMonth");
-		if (config.getProperty("reportRequested").equals("debt summary by month")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("debt summary by month")
 				|| this.getTheTest().equals("DebtSummaryByMonth")) {
 
 			System.out.println("Try DebtSummaryByMonth 1");
@@ -47,7 +47,12 @@ public class DebtSummaryByMonth extends TestBaseReports {
 				type("dsbm_site_name_xpath", dsbmSiteName);
 			} else {
 				type("dsbm_org_name_xpath", dsbmOrganization);
-			} 
+			}
+
+			click("dsbm_month_field_xpath");
+			click("dsbm_month_all_selection_xpath");
+
+			click("dsbm_run_complete_report_xpath");
 			
 		} else {
 			

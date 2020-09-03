@@ -14,11 +14,10 @@ public class ReportPERSTEMPO extends TestBaseReports {
 		super.setTheTest("ReportPERSTEMPO");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void reportPERSTEMPO(String perOrganization, String perPerstempoCode, String perPaidDateStart, String perPaidDateEnd) {
 
-		if (config.getProperty("reportRequested").equals("perstempo")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("perstempo")
 				|| this.getTheTest().equals("ReportPERSTEMPO")) {
 
 			System.out.println("Try ReportPERSTEMPO 1");
@@ -28,8 +27,8 @@ public class ReportPERSTEMPO extends TestBaseReports {
 			
 			type("per_organization_xpath", perOrganization);
 			type("per_perstempo_code_xpath", perPerstempoCode);
-			type("per_start_date_xpath", perPaidDateStart);
-			type("per_end_date_xpath", perPaidDateEnd);
+			type("per_paid_date_start_xpath", perPaidDateStart);
+			type("per_paid_date_end_xpath", perPaidDateEnd);
 			
 			click("per_run_report_xpath");
 

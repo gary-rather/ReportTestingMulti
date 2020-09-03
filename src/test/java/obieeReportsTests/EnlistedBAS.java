@@ -14,11 +14,10 @@ public class EnlistedBAS extends TestBaseReports {
 		super.setTheTest("EnlistedBAS");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void enlistedBAS(String ebasOrganization, String ebasDoctype, String ebasApproveDateStart, String ebasApproveDateEnd) {
 		
-		if(config.getProperty("reportRequested").equals("enlisted bas")
+		if(config.getProperty("reportRequested").equalsIgnoreCase("enlisted bas")
 				|| this.getTheTest().equals("EnlistedBAS")) {
 
 			System.out.println("Try EnlistedBAS 1");
@@ -28,8 +27,8 @@ public class EnlistedBAS extends TestBaseReports {
 			
 			type("ebas_organization_xpath", ebasOrganization);
 			type("ebas_doctype_xpath", ebasDoctype);
-			type("ebas_start_date_xpath", ebasApproveDateStart);
-			type("ebas_end_date_xpath", ebasApproveDateEnd);
+			type("ebas_approve_date_start_xpath", ebasApproveDateStart);
+			type("ebas_approve_date_end_xpath", ebasApproveDateEnd);
 			
 			click("ebas_run_report_xpath");
 			

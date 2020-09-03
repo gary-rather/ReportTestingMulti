@@ -14,17 +14,16 @@ public class ExpenseReportByDocumentName extends TestBaseReports {
 		super.setTheTest("ExpenseReportByDocumentName");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void expenseReportByDocumentName(String erdnOrganization, String erdnApproveDateStart, String erdnApproveDateEnd) {
 
-		if (config.getProperty("reportRequested").equals("expense report by document name")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("expense report by document name")
 				|| this.getTheTest().equals("ExpenseReportByDocumentName")) {
 
 			System.out.println("Try ExpenseReportByDocumentName 1");
 
-			click("erc_reset_menu_xpath");
-			click("erc_clear_all_data_xpath");
+			click("erdn_reset_menu_xpath");
+			click("erdn_clear_all_data_xpath");
 			
 			type("erdn_organization_xpath", erdnOrganization);
 			type("erdn_approve_date_start_xpath", erdnApproveDateStart);

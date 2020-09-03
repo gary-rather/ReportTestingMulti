@@ -14,12 +14,11 @@ public class ExpenseReportByCategory extends TestBaseReports {
 		super.setTheTest("ExpenseReportByCategory");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void expenseReportByCategory(String ercOrganization, String ercDoctype, String ercApproveDateStart,
 			String ercApproveDateEnd, String ercLOA) {
 
-		if (config.getProperty("reportRequested").equals("expense report by category")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("expense report by category")
 				|| this.getTheTest().equals("ExpenseReportByCategory")) {
 
 			System.out.println("Try ExpenseReportByCategory 1");

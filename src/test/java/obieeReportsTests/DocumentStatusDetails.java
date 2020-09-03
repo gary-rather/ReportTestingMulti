@@ -21,13 +21,12 @@ public class DocumentStatusDetails extends TestBaseReports {
 		super.setTheTest("DocumentStatusDetails");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void documentStatusDetails(String dsdDoctype, String dsdDocstat, String dsdDaysSinceStatChange,
 			String dsdStatDateStart, String dsdStatDateEnd, String dsdDprtDateStart, String dsdDprtDateEnd,
 			String dsdRtrnDateStart, String dsdRtrnDateEnd, String dsdAgency, String dsdOrganization) throws InterruptedException {
 
-		if (config.getProperty("reportRequested").equals("document status details")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("document status details")
 				|| this.getTheTest().equals("DocumentStatusDetails")) {
 
 			System.out.println("Try DocumentStatusDetails 1");
@@ -56,11 +55,8 @@ public class DocumentStatusDetails extends TestBaseReports {
 			type("dsd_docstat_xpath", dsdDocstat);
 			type("dsd_days_since_stat_change_xpath", dsdDaysSinceStatChange);
 
-
-
 			System.out.println("dsd_stat_date " + dsdStatDateStart);
 			type("dsd_stat_date_start_xpath", dsdStatDateStart);
-
 
 			System.out.println("dsdStatDateEnd " + dsdStatDateEnd);
 			type("dsd_stat_date_end_xpath", dsdStatDateEnd);
@@ -71,14 +67,12 @@ public class DocumentStatusDetails extends TestBaseReports {
 			System.out.println("dsdDprtDateEnd " + dsdDprtDateEnd);
 			type("dsd_dprt_date_end_xpath", dsdDprtDateEnd);
 
-
 			System.out.println("dsd_rtrn_date");
 			type("dsd_rtrn_date_start_xpath", dsdRtrnDateStart);
 			type("dsd_rtrn_date_end_xpath", dsdRtrnDateEnd);
 
 			System.out.println("dsd_agency_xpath");
 			type("dsd_agency_xpath", dsdAgency);
-
 
 			System.out.println("dsd_organization_xpath");
 			type("dsd_organization_xpath", dsdOrganization);

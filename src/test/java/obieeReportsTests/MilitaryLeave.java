@@ -14,22 +14,21 @@ public class MilitaryLeave extends TestBaseReports {
 		super.setTheTest("MilitaryLeave");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void militaryLeave(String milDoctype, String milOrganization, String milApproveDateStart, String milApproveDateEnd) {
 
-		if (config.getProperty("reportRequested").equals("military leave")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("military leave")
 				|| this.getTheTest().equals("MilitaryLeave")) {
 
 			System.out.println("Try MilitaryLeave 1");
 
 			click("mil_reset_menu_xpath");
 			click("mil_clear_all_data_xpath");
-			
-			type("mil_doctype_xpath", milDoctype);
+
 			type("mil_organization_xpath", milOrganization);
-			type("mil_start_date_xpath", milApproveDateStart);
-			type("mil_end_date_xpath", milApproveDateEnd);
+			type("mil_approve_date_start_xpath", milApproveDateStart);
+			type("mil_approve_date_end_xpath", milApproveDateEnd);
+			type("mil_doctype_xpath", milDoctype);
 			
 			click("mil_run_report_xpath");
 

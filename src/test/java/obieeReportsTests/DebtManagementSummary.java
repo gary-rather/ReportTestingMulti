@@ -14,11 +14,10 @@ public class DebtManagementSummary extends TestBaseReports {
 		super.setTheTest("DebtManagementSummary");
 	}
 
-
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void debtManagementSummary(String dmsOrganization) {
 
-		if (config.getProperty("reportRequested").equals("debt management summary")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("debt management summary")
 				|| this.getTheTest().equals("DebtManagementSummary")) {
 
 			System.out.println("Try DebtManagementSummary 1");

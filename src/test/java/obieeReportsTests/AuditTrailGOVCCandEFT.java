@@ -19,16 +19,15 @@ public class AuditTrailGOVCCandEFT extends TestBaseReports {
 			String atgeChangeDateStart, String atgeChangeDateEnd) {
         System.out.println("Try AuditTrailGOVCCandEFT");
 
-		if (config.getProperty("reportRequested").equals("audit trail govcc eft data")
+		if (config.getProperty("reportRequested").equalsIgnoreCase("audit trail govcc eft data")
 		    || this.getTheTest().equals("AuditTrailGOVCCandEFT")) {
 
 			System.out.println("Try AuditTrailGOVCCandEFT 1");
 			click("atge_reset_menu_xpath");
 			click("atge_clear_all_data_xpath");
 
-			//type("atge_changed_person_ssn_prtl_xpath", atgeChangePersonSSNPartial);
-			
-			//lines 22-29: drop-down selection for Mask Account Number option (will not allow me to use the drop-down method from the test base)
+			type("atge_changed_person_ssn_prtl_xpath", atgeChangePersonSSNPartial);
+
 			click("atge_mask_account_num_dropdown_xpath");
 			if(atgeMaskAccountNum.equalsIgnoreCase("Y")) {
 				click("atge_mask_account_num_yes_xpath");
