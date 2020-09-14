@@ -9,15 +9,22 @@ import org.testng.annotations.Test;
 public class CTOFee extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report CTOFee setTheTest: "  );
         super.setTheTest("CTOFee");
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-    public void ctoFee(String ctoOrganization, String ctoTicketDateStart, String ctoTicketDateEnd) {
+    public void ctoFee(String ctoOrganization, String ctoTicketDateStart,
+                       String ctoTicketDateEnd) throws InterruptedException {
+
+        System.out.println("Report CTOFee setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
 
         System.out.println("Try CTOFee");
+
         if (config.getProperty("reportRequested").equalsIgnoreCase("cto fee")
                 || this.getTheTest().equals("CTOFee")) {
 

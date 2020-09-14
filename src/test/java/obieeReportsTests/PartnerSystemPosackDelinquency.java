@@ -9,18 +9,25 @@ import org.testng.annotations.Test;
 public class PartnerSystemPosackDelinquency extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report Partner System PosAckDelinquency setTheTest: "  );
-        super.setTheTest("Partner System PosAckDelinquency");
+        super.setTheTest("PartnerSystemPosackDelinquency");
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
     public void partnerSystemPosAckDelinquency(String pspadOrganization, String pspadNumHrsDelinquent,
-                                               String pspadTransactionCategory, String pspadPartnerSystem) {
+                                               String pspadTransactionCategory, String pspadPartnerSystem)
+            throws InterruptedException {
+
+        System.out.println("Report Partner System PosAckDelinquency setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
 
         System.out.println("Try Partner System PosAckDelinquency");
+
         if (config.getProperty("reportRequested").equalsIgnoreCase("ps posack delinquency")
-                || this.getTheTest().equals("PartnerSystemPosAckDelinquency")) {
+                || this.getTheTest().equals("PartnerSystemPosackDelinquency")) {
 
             System.out.println("Try Partner System PosAckDelinquency 1");
             //click("pspad_cont_to_report_id");

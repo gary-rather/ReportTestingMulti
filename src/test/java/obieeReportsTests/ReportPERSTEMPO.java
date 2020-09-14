@@ -9,24 +9,31 @@ import obieeReportsUtilities.TestUtilReports;
 public class ReportPERSTEMPO extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report ReportPERSTEMPO setTheTest: "  );
 		super.setTheTest("ReportPERSTEMPO");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void reportPERSTEMPO(String perOrganization, String perPerstempoCode, String perPaidDateStart, String perPaidDateEnd) {
+	public void reportPERSTEMPO(String perPerstempoCode, String perPaidDateStart,
+								String perPaidDateEnd) throws InterruptedException {
+
+		System.out.println("Report PERSTEMPO setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try ReportPERSTEMPO");
 
 		if (config.getProperty("reportRequested").equalsIgnoreCase("perstempo")
 				|| this.getTheTest().equals("ReportPERSTEMPO")) {
 
-			System.out.println("Try ReportPERSTEMPO 1");
-
 			click("per_reset_menu_xpath");
-			click("per_clear_all_data_xpath");
+			click("per_reset_to_default_xpath");
 			
-			type("per_organization_xpath", perOrganization);
-			type("per_perstempo_code_xpath", perPerstempoCode);
+			click("per_organization_field_xpath");
+			click("per_organization_all_selection_xpath");
+
 			type("per_paid_date_start_xpath", perPaidDateStart);
 			type("per_paid_date_end_xpath", perPaidDateEnd);
 			

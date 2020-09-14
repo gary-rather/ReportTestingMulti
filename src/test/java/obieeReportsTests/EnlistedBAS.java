@@ -9,14 +9,22 @@ import obieeReportsUtilities.TestUtilReports;
 public class EnlistedBAS extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report EnlistedBAS setTheTest: "  );
 		super.setTheTest("EnlistedBAS");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void enlistedBAS(String ebasOrganization, String ebasDoctype, String ebasApproveDateStart, String ebasApproveDateEnd) {
-		
+	public void enlistedBAS(String ebasOrganization, String ebasDoctype, String ebasApproveDateStart,
+							String ebasApproveDateEnd) throws InterruptedException {
+
+		System.out.println("Report EnlistedBAS setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try EnlistedBAS");
+
 		if(config.getProperty("reportRequested").equalsIgnoreCase("enlisted bas")
 				|| this.getTheTest().equals("EnlistedBAS")) {
 

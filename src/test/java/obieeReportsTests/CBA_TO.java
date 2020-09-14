@@ -9,18 +9,24 @@ import org.testng.annotations.Test;
 public class CBA_TO extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report CBA_TO setTheTest: "  );
-        super.setTheTest("CBA_TO");
+        super.setTheTest("CBATO");
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
     public void cbaTo (String cbaOrganization, String cbaDprtDateStart, String cbaDprtDateEnd,
-                       String cbaExceptionsOnly) {
+                       String cbaExceptionsOnly) throws InterruptedException {
+
+        System.out.println("Report CBA_TO setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
 
         System.out.println("Try CBA_TO");
+
         if (config.getProperty("reportRequested").equalsIgnoreCase("cba to")
-                || this.getTheTest().equals("CBA_TO")) {
+                || this.getTheTest().equals("CBATO")) {
 
             System.out.println("Try CBA_TO 1");
 

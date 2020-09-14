@@ -18,8 +18,16 @@ public class AuditTrailUserData extends TestBaseReports {
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void auditTrailUserData(String atuChangePersonSSNPartial, String atuChangeDateStart, String atuChangeDateEnd) {
-		System.out.println("Try auditTrailUserData");
+	public void auditTrailUserData(String atuChangePersonSSNPartial, String atuChangeDateStart,
+								   String atuChangeDateEnd) throws InterruptedException {
+
+		System.out.println("Report AuditTrailUserData setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try AuditTrailUserData");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("audit trail user data")
 				|| this.getTheTest().equals("AuditTrailUserData")) {
 

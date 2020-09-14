@@ -12,27 +12,22 @@ import obieeReportsUtilities.TestUtilReports;
 public class AuditTrailPersonData extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report AuditTrailPersonData setTheTest: "  );
 		super.setTheTest("AuditTrailPersonData");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void auditTrailPersonData(String atpChangePersonSSNPartial, String atpChangeDateStart,
-			String atpChangeDateEnd) {
-		System.out.println("Report AuditTrailPersonData: " + this.getTheTest() );
-		System.out.println("Report AuditTrailPersonData: " + config.getProperty("reportRequested"));
-		log.debug("Going into Traveler & User Information section");
-		WebElement ti = driver.findElement(By.xpath("//span[text()[contains(.,'Traveler & User Information Dashboard')]]"));
-		ti.click();
+			String atpChangeDateEnd) throws InterruptedException {
 
-		System.out.println("Going into Audit Trail reports");
-		driver.findElement(By.xpath(OR.getProperty("audit_trail_all_reports"))).click();
+		System.out.println("Report AuditTrailPersonData setTheTest: "  );
 
-		log.debug("Testing Audit Trail Traveler Data Report");
-		driver.findElement(By.xpath(OR.getProperty("audit_trail_person_data"))).click();
+		runBeforeClass();
+		super.setUp();
 
-		System.out.println("Try auditTrailPersonData");
+		System.out.println("Try AuditTrailPersonData");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("audit trail person data")
 				|| this.getTheTest().equals("AuditTrailPersonData")) {
 

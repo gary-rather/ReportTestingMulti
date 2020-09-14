@@ -10,25 +10,33 @@ import obieeReportsUtilities.TestUtilReports;
 public class UnsubmittedVoucher extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report UnsubmittedVoucher setTheTest: "  );
 		super.setTheTest("UnsubmittedVoucher");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void unsubmittedVoucher(String uvOrganization, String uvPartnerSystemCode, String uvRtrnDateStart,
-								   String uvRtrnDateEnd, String uvDaysSinceReturn) {
+	public void unsubmittedVoucher(String uvPartnerSystemCode, String uvRtrnDateStart,
+								   String uvRtrnDateEnd, String uvDaysSinceReturn) throws InterruptedException {
 
-        System.out.println("Try UnsubmittedVoucher");
+		System.out.println("Report UnsubmittedVoucher setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try UnsubmittedVoucher");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("unsubmitted voucher")
 				|| this.getTheTest().equals("UnsubmittedVoucher")) {
 
 			System.out.println("Try UnsubmittedVoucher 1");
 
 			click("uv_reset_menu_xpath");
-			click("uv_clear_all_data_xpath");
+			click("uv_reset_to_default_xpath");
 
-			type("uv_organization_xpath", uvOrganization);
+			click("uv_organization_field_xpath");
+			click("uv_organization_all_selection_xpath");
+
 			type("uv_partner_sys_code_xpath", uvPartnerSystemCode);
 			type("uv_rtrn_date_start_xpath", uvRtrnDateStart);
 			type("uv_rtrn_date_end_xpath", uvRtrnDateEnd);

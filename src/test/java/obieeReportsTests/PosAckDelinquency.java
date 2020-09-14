@@ -9,18 +9,24 @@ import obieeReportsUtilities.TestUtilReports;
 public class PosAckDelinquency extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report PosAckDelinquency setTheTest: "  );
-		super.setTheTest("PosAckDelinquency");
+		super.setTheTest("PosackDelinquency");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void posAckDelinquency(String padOrganization, String padNumHrsDelinquent,
-								  String padTransactionCategory) {
+								  String padTransactionCategory) throws InterruptedException {
 
-        System.out.println("Try PosAckDelinquency");
+		System.out.println("Report PosAckDelinquency setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try PosAckDelinquency");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("posack delinquency")
-				|| this.getTheTest().equals("PosAckDelinquency")) {
+				|| this.getTheTest().equals("PosackDelinquency")) {
 
 			System.out.println("Try PosAckDelinquency 1");
 			//click("pad_cont_to_report_id");

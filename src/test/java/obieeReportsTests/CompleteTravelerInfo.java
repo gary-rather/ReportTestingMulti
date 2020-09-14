@@ -1,94 +1,203 @@
 package obieeReportsTests;
 
-import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.SkipException;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import obieeReportsBase.TestBaseReports;
 import obieeReportsUtilities.TestUtilReports;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.SkipException;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class CompleteTravelerInfo extends TestBaseReports {
-	public static Logger log = Logger.getLogger("CompleteTravelerInfo");
 
-	@BeforeClass
-	public void runBeforeClass(){
-		log.debug("2 ====== Report CompleteTravelerInfo ======================================="  );
-		super.setTheTest("CompleteTravelerInfo");
-		log.debug("this.getTheTest(): "  +  this.getTheTest());
-	}
+    @BeforeClass
+    public void runBeforeClass(){
+        System.out.println("Report CompleteTravelerInfo setTheTest: "  );
+        super.setTheTest("CompleteTravelerInfo");
+    }
 
-	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void completeTravelerInfo(String ctiSetOrganization, String ctiSetNextTravelDateStart,
-			String ctiSetNextTravelDateEnd, String ctiSetShowFullSSN, String ctiSetShowOnlyTravelersOnTDY) throws InterruptedException {
-       runBeforeClass();
-		super.setUp();
+    @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
+    public void completeTravelerInfo(String ctitShowFullSSN, String ctitOnlyTDY, String ctitNextTravelDateStart,
+                                     String ctitNextTravelDateEnd, String ctiuShowFullSSN, String ctiuOnlyTDY,
+                                     String ctiuNextTravelDateStart, String ctiuNextTravelDateEnd,
+                                     String ctiuProfileUpdatedSinceDate, String ctipShowFullSSN, String ctipOnlyTDY,
+                                     String ctipNextTravelDateStart, String ctipNextTravelDateEnd,
+                                     String ctiaShowFullSSN, String ctiaOnlyTDY, String ctiaNextTravelDateStart,
+                                     String ctiaNextTravelDateEnd, String ctiaAccountActiveFlag,
+                                     String ctiaExpDateOnAfter) throws InterruptedException {
 
-		String theTestValue  = this.getTheTest();
-		log.debug("Report CompleteTravelerInfo: " + this.getTheTest() );
-		log.debug("Report CompleteTravelerInfo: " + config.getProperty("reportRequested"));
-		log.debug("Going into Traveler & User Information section");
-		//WebElement ti = driver.findElement(By.xpath("//span[text()[contains(.,'Traveler & User Information Dashboard')]]"));
-		//ti.click();
+        System.out.println("Report CompleteTravelerInfo setTheTest: "  );
 
-		log.debug("Try completeTravelerInfo  0");
-		//driver.findElement(By.xpath(OR.getProperty("complete_traveler_info"))).click();
+        runBeforeClass();
+        super.setUp();
 
-        log.debug("Try completeTravelerInfo theTestValue: " + theTestValue);
-		if (config.getProperty("reportRequested").equals("cti traveler details")
-				|| config.getProperty("reportRequested").equals("cti user details")
-				|| config.getProperty("reportRequested").equals("cti personal details")
-				|| config.getProperty("reportRequested").equals("cti account details")
-				|| this.getTheTest().equals("CompleteTravelerInfo")
-				) {
+        System.out.println("Try CompleteTravelerInfo");
 
-			log.debug("Try completeTravelerInfo 1");
-			log.debug("Try completeTravelerInfo 1");
-			click("cti_set_reset_menu_xpath");
-			click("cti_set_clear_all_data_xpath");
+        if (config.getProperty("reportRequested").equalsIgnoreCase("complete traveler info")
+                || this.getTheTest().equals("CompleteTravelerInfo")) {
 
-			type("cti_set_organization_xpath", ctiSetOrganization);
-			log.debug("Try completeTravelerInfo 2");
-			log.debug("Try completeTravelerInfo 2");
-			// lines 25-31: drop-down selection for Show Full SSN option (will not allow me to use the drop-down method from the test base)
-			if (ctiSetShowFullSSN.equalsIgnoreCase("Y")) {
-				click("cti_set_show_full_ssn_xpath");
-			} else if (ctiSetShowFullSSN.equalsIgnoreCase("N")) {
-				click("cti_set_show_partial_ssn_xpath");
-			} else {
-				throw new SkipException("invalid input - try again");
-			}
-			log.debug("Try completeTravelerInfo 3");
-			// lines 34-40: drop-down selection for Show Only Travelers On TDY option (will not allow me to use the drop-down method from the test base)
-			if (ctiSetShowOnlyTravelersOnTDY.equalsIgnoreCase("Y")) {
-				click("cti_set_only_tdy_travelers_xpath");
-			} else if (ctiSetShowOnlyTravelersOnTDY.equalsIgnoreCase("N")) {
-				click("cti_set_show_all_traveler_xpath");
-			} else {
-				throw new SkipException("invalid input - try again");
-			}
-			log.debug("Try completeTravelerInfo 4");
-			type("cti_set_next_travel_date_start_xpath", ctiSetNextTravelDateStart);
-			type("cti_set_next_travel_date_end_xpath", ctiSetNextTravelDateEnd);
-			click("cti_set_run_report_xpath");
+            Thread.sleep(1000);
+            WebElement iframe = driver.findElement(By.xpath("//iframe"));
+            driver.switchTo().frame(iframe);
 
-			WebDriverWait wait=new WebDriverWait(driver,60);
+            Thread.sleep(1000);
+            click("ctit_organization_field_xpath");
+            click("ctit_organization_all_selection_xpath");
+            Thread.sleep(1000);
+            click("ctit_organization_all_selection_xpath");
+            click("ctit_organization_field_xpath");
 
+            Thread.sleep(1000);
+            click("ctit_show_full_ssn_field_xpath");
+            if(ctitShowFullSSN.equalsIgnoreCase("Yes")) {
+                click("ctit_show_full_ssn_yes_selection_xpath");
+            } else if(ctitShowFullSSN.equalsIgnoreCase("No")) {
+                click("ctit_show_full_ssn_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
 
+            Thread.sleep(1000);
+            click("ctit_only_tdy_field_xpath");
+            if(ctitOnlyTDY.equalsIgnoreCase("Yes")) {
+                click("ctit_only_tdy_yes_selection_xpath");
+            } else if(ctitOnlyTDY.equalsIgnoreCase("No")) {
+                click("ctit_only_tdy_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
 
-			//WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("ur xpath here")));
+            Thread.sleep(1000);
+            type("ctit_next_travel_date_start_xpath", ctitNextTravelDateStart);
+            type("ctit_next_travel_date_end_xpath", ctitNextTravelDateEnd);
+            click("ctit_run_report_xpath");
+            Thread.sleep(1000);
 
-		} else {
+            // User Details
+            System.out.println("Try CompleteTravelerInfo UserDetails");
 
-			throw new SkipException("not running this report currently");
+            Thread.sleep(1000);
+            click("ctiu_organization_field_xpath");
+            click("ctiu_organization_all_selection_xpath ");
+            Thread.sleep(1000);
+            click("ctiu_organization_all_selection_xpath ");
+            click("ctiu_organization_field_xpath");
 
-		}
-        log.debug("Report CompleteTravlerInfo Complete ##########################");
-	}
+            Thread.sleep(1000);
+            click("ctiu_show_full_ssn_field_xpath");
+            if(ctiuShowFullSSN.equalsIgnoreCase("Yes")) {
+                click("ctiu_show_full_ssn_yes_selection_xpath");
+            } else if(ctiuShowFullSSN.equalsIgnoreCase("No")) {
+                click("ctiu_show_full_ssn_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
+
+            Thread.sleep(1000);
+            click("ctiu_only_tdy_field_xpath");
+            if(ctiuOnlyTDY.equalsIgnoreCase("Yes")) {
+                click("ctiu_only_tdy_yes_selection_xpath");
+            } else if(ctiuOnlyTDY.equalsIgnoreCase("No")) {
+                click("ctiu_only_tdy_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
+
+            Thread.sleep(1000);
+            type("ctiu_next_travel_date_start_xpath", ctiuNextTravelDateStart);
+            type("ctiu_next_travel_date_end_xpath", ctiuNextTravelDateEnd);
+            type("ctiu_profile_updated_since_date_xpath", ctiuProfileUpdatedSinceDate);
+            click("ctiu_run_report_xpath");
+            Thread.sleep(1000);
+
+            // Person Details
+            System.out.println("Try CompleteTravelerInfo PersonDetails");
+
+            Thread.sleep(1000);
+            click("ctip_organization_field_xpath");
+            click("ctip_organization_all_selection_xpath");
+            Thread.sleep(1000);
+            click("ctip_organization_all_selection_xpath");
+            click("ctip_organization_field_xpath");
+
+            Thread.sleep(1000);
+            click("ctip_show_full_ssn_field_xpath");
+            if(ctipShowFullSSN.equalsIgnoreCase("Yes")) {
+                click("ctip_show_full_ssn_yes_selection_xpath");
+            } else if(ctipShowFullSSN.equalsIgnoreCase("No")) {
+                click("ctip_show_full_ssn_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
+
+            Thread.sleep(1000);
+            click("ctip_only_tdy_field_xpath");
+            if(ctipOnlyTDY.equalsIgnoreCase("Yes")) {
+                click("ctip_only_tdy_yes_selection_xpath");
+            } else if(ctipOnlyTDY.equalsIgnoreCase("No")) {
+                click("ctip_only_tdy_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
+
+            Thread.sleep(1000);
+            type("ctip_next_travel_date_start_xpath", ctipNextTravelDateStart);
+            type("ctip_next_travel_date_end_xpath", ctipNextTravelDateEnd);
+            click("ctip_run_report_xpath");
+            Thread.sleep(1000);
+
+            // Account Details
+            System.out.println("Try CompleteTravelerInfo AccountDetails");
+
+            Thread.sleep(1000);
+            click("ctia_organization_field_xpath");
+            click("ctia_organization_all_selection_xpath ");
+            Thread.sleep(1000);
+            click("ctia_organization_all_selection_xpath ");
+            click("ctia_organization_field_xpath");
+
+            Thread.sleep(1000);
+            click("ctia_show_full_ssn_field_xpath");
+            if(ctiaShowFullSSN.equalsIgnoreCase("Yes")) {
+                click("ctia_show_full_ssn_yes_selection_xpath");
+            } else if(ctiaShowFullSSN.equalsIgnoreCase("No")) {
+                click("ctia_show_full_ssn_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
+
+            Thread.sleep(1000);
+            click("ctia_only_tdy_field_xpath");
+            if(ctiaOnlyTDY.equalsIgnoreCase("Yes")) {
+                click("ctia_only_tdy_yes_selection_xpath");
+            } else if(ctiaOnlyTDY.equalsIgnoreCase("No")) {
+                click("ctia_only_tdy_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
+
+            Thread.sleep(1000);
+            type("ctia_next_travel_date_start_xpath", ctiaNextTravelDateStart);
+            type("ctia_next_travel_date_end_xpath", ctiaNextTravelDateEnd);
+
+            Thread.sleep(1000);
+            click("ctia_account_active_flag_field_xpath");
+            if(ctiaAccountActiveFlag.equalsIgnoreCase("All")) {
+                click("ctia_account_active_flag_any_selection_xpath");
+            } else if(ctiaAccountActiveFlag.equalsIgnoreCase("Yes")) {
+                click("ctia_account_active_flag_yes_selection_xpath");
+            } else if(ctiaAccountActiveFlag.equalsIgnoreCase("No")) {
+                click("ctia_account_active_flag_no_selection_xpath");
+            } else {
+                throw new SkipException("invalid input - try again");
+            }
+
+            Thread.sleep(1000);
+            type("ctia_exp_date_on_after_xpath", ctiaExpDateOnAfter);
+            click("ctia_run_report_xpath");
+
+        }
+
+    }
 
 }

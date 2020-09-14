@@ -10,17 +10,23 @@ public class AuditTrailGOVCCandEFT extends TestBaseReports {
 	@BeforeClass
 	public void runBeforeClass(){
 		log.debug("2 ====== Report AuditTrailGOVCCandEFT ======================================="  );
-		super.setTheTest("AuditTrailGOVCCandEFT");
+		super.setTheTest("AuditTrail_GOVCC_EFT_Data");
 		log.debug("this.getTheTest(): "  +  this.getTheTest());
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void auditTrailGOVCCandEFT(String atgeChangePersonSSNPartial, String atgeMaskAccountNum,
-			String atgeChangeDateStart, String atgeChangeDateEnd) {
-        System.out.println("Try AuditTrailGOVCCandEFT");
+			String atgeChangeDateStart, String atgeChangeDateEnd) throws InterruptedException {
+
+		System.out.println("Report AuditTrailGOVCCandEFT setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try AuditTrailGOVCCandEFT");
 
 		if (config.getProperty("reportRequested").equalsIgnoreCase("audit trail govcc eft data")
-		    || this.getTheTest().equals("AuditTrailGOVCCandEFT")) {
+		    || this.getTheTest().equals("AuditTrail_GOVCC_EFT_Data")) {
 
 			System.out.println("Try AuditTrailGOVCCandEFT 1");
 			click("atge_reset_menu_xpath");

@@ -9,18 +9,24 @@ import org.testng.annotations.Test;
 public class FPLP_FEMA extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report FPLP/FEMA setTheTest: "  );
-        super.setTheTest("FPLP/FEMA");
+        super.setTheTest("FPLP_FEMA");
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-    public void fplpFema(String ffOrganization,String ffDprtDateStart, String ffDprtDateEnd) {
+    public void fplpFema(String ffOrganization,String ffDprtDateStart, String ffDprtDateEnd)
+            throws InterruptedException {
+
+        System.out.println("Report FPLP/FEMA setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
+
+        System.out.println("Try FPLP/FEMA");
 
         if (config.getProperty("reportRequested").equalsIgnoreCase("fplp fema")
                 || this.getTheTest().equals("FPLP_FEMA")) {
-
-            System.out.println("Try FPLP/FEMA 1");
 
             click("ff_reset_menu_xpath");
             click("ff_clear_all_data_xpath");

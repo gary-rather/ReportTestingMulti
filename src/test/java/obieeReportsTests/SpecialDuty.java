@@ -9,19 +9,24 @@ import obieeReportsUtilities.TestUtilReports;
 public class SpecialDuty extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report SpecialDuty setTheTest: "  );
 		super.setTheTest("SpecialDuty");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void specialDuty(String sdDoctype, String sdOrganization, String sdSpecialDutyDateStart,
-							String sdSpecialDutyDateEnd) {
-		
+							String sdSpecialDutyDateEnd) throws InterruptedException {
+
+		System.out.println("Report OCONUS setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try SpecialDuty 1");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("special duty")
 				|| this.getTheTest().equals("SpecialDuty")) {
-
-			System.out.println("Try SpecialDuty 1");
 
 			click("sd_reset_menu_xpath");
 			click("sd_clear_all_data_xpath");

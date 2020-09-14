@@ -9,14 +9,21 @@ import obieeReportsUtilities.TestUtilReports;
 public class DebtManagementDetails extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report DebtManagementDetails setTheTest: "  );
 		super.setTheTest("DebtManagementDetails");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void debtManagementDetails(String dmdOrganization) {
-		System.out.println("Try debtManagementDetails");
+	public void debtManagementDetails(String dmdOrganization) throws InterruptedException {
+
+		System.out.println("Report DebtManagementDetails setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try DebtManagementDetails");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("debt management details")
 				|| this.getTheTest().equals("DebtManagementDetails")) {
 

@@ -9,19 +9,25 @@ import org.testng.annotations.Test;
 public class HotelTaxExemptLocations extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report HotelTaxExemptLocations setTheTest: "  );
         super.setTheTest("HotelTaxExemptLocations");
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
     public void hotelTaxExemptLocations(String htelOrganization,String htelTaxExemptLocation,
-                                        String htelExpenseDateStart, String htelExpenseDateEnd) {
+                                        String htelExpenseDateStart, String htelExpenseDateEnd)
+            throws InterruptedException {
+
+        System.out.println("Report HotelTaxExemptLocations setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
+
+        System.out.println("Try HotelTaxExemptLocations");
 
         if (config.getProperty("reportRequested").equalsIgnoreCase("hotel tax exempt locations")
                 || this.getTheTest().equals("HotelTaxExemptLocations")) {
-
-            System.out.println("Try HotelTaxExemptLocations 1");
 
             click("htel_reset_menu_xpath");
             click("htel_clear_all_data_xpath");

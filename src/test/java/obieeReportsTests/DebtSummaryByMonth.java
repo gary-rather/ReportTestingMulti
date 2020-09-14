@@ -9,15 +9,22 @@ import obieeReportsUtilities.TestUtilReports;
 public class DebtSummaryByMonth extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report DebtSummaryByMonth setTheTest: "  );
 		super.setTheTest("DebtSummaryByMonth");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void debtSummaryByMonth(String dsbmRunReportBy, String dsbmServiceName, String dsbmSiteName,
-								   String dsbmOrganization) {
+								   String dsbmOrganization) throws InterruptedException {
+
+		System.out.println("Report DebtSummaryByMonth setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
         System.out.println("Try DebtSummaryByMonth");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("debt summary by month")
 				|| this.getTheTest().equals("DebtSummaryByMonth")) {
 

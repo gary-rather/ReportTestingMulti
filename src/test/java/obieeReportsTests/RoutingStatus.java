@@ -10,32 +10,38 @@ import obieeReportsUtilities.TestUtilReports;
 public class RoutingStatus extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report RoutingStatus setTheTest: "  );
 		super.setTheTest("RoutingStatus");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void routingStatus(String rtgOrganization, String rtgDoctype, String rtgPartnerSystem,
-							  String rtgNumDaysCurrStat) {
+	public void routingStatus(String rtgPartnerSystem, String rtgDoctype,
+							  String rtgNumDaysCurrStat) throws InterruptedException {
+
+		System.out.println("Report RoutingStatus setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
 
 		System.out.println("Try RoutingStatus");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("routing status")
 				|| this.getTheTest().equals("RoutingStatus")) {
 
-			System.out.println("Try RoutingStatus 1");
-
 			click("rtg_reset_menu_xpath");
-			click("rtg_clear_all_data_xpath");
+			click("rtg_reset_to_default_xpath");
 
 			System.out.println("Try RoutingStatus 2");
-			type("rtg_organization_xpath", rtgOrganization);
+			click("rtg_organization_field_xpath");
+			click("rtg_organization_all_selection_xpath");
+
 			type("rtg_partner_sys_xpath", rtgPartnerSystem);
 			type("rtg_doctype_xpath", rtgDoctype);
 
 			System.out.println("Try RoutingStatus 3");
-			click("rtg_ao_ssn_field_xpath");
-			click("rtg_ao_ssn_all_selection_xpath");
+			//click("rtg_ao_ssn_field_xpath");
+			//click("rtg_ao_ssn_all_selection_xpath");
 			type("rtg_days_in_stat_xpath", rtgNumDaysCurrStat);
 
 			System.out.println("Try RoutingStatus 4");

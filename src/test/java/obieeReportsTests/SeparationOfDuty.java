@@ -26,9 +26,14 @@ public class SeparationOfDuty extends TestBaseReports {
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void separationOfDuty(String sodOrganization, String sodApproveDateStart, String sodApproveDateEnd) throws InterruptedException {
+	public void separationOfDuty(String sodOrganization, String sodApproveDateStart,
+								 String sodApproveDateEnd) throws InterruptedException {
+
 		System.out.println("Report SeparationOfDuty: " + this.getTheTest() );
+
+		runBeforeClass();
 		super.setUp();
+
 		log.debug("Going into Traveler & User Information section");
 
 		if (config.getProperty("reportRequested").equalsIgnoreCase("separation of duty")

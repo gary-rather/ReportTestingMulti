@@ -9,20 +9,25 @@ import org.testng.annotations.Test;
 public class PartnerSystemCTOFee extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report PartnerSystemCTOFee setTheTest: "  );
         super.setTheTest("PartnerSystemCTOFee");
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
     public void partnerSystemCTOFee(String psctoOrganization, String psctoTicketDateStart,
-                                    String psctoTicketDateEnd, String psctoPartnerSystem) {
+                                    String psctoTicketDateEnd, String psctoPartnerSystem)
+            throws InterruptedException {
+
+        System.out.println("Report PartnerSystemCTOFee setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
 
         System.out.println("Try PartnerSystemCTOFee");
+
         if (config.getProperty("reportRequested").equalsIgnoreCase("ps cto fee")
                 || this.getTheTest().equals("PartnerSystemCTOFee")) {
-
-            System.out.println("Try PartnerSystemCTOFee 1");
 
             click("pscto_reset_menu_xpath");
             click("pscto_clear_all_data_xpath");

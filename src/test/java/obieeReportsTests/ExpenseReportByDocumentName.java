@@ -9,18 +9,24 @@ import obieeReportsUtilities.TestUtilReports;
 public class ExpenseReportByDocumentName extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report ExpenseReportByDocumentName setTheTest: "  );
 		super.setTheTest("ExpenseReportByDocumentName");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void expenseReportByDocumentName(String erdnOrganization, String erdnApproveDateStart, String erdnApproveDateEnd) {
+	public void expenseReportByDocumentName(String erdnOrganization, String erdnApproveDateStart,
+											String erdnApproveDateEnd) throws InterruptedException {
+
+		System.out.println("Report ExpenseReportByDocumentName setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try ExpenseReportByDocumentName");
 
 		if (config.getProperty("reportRequested").equalsIgnoreCase("expense report by document name")
 				|| this.getTheTest().equals("ExpenseReportByDocumentName")) {
-
-			System.out.println("Try ExpenseReportByDocumentName 1");
 
 			click("erdn_reset_menu_xpath");
 			click("erdn_clear_all_data_xpath");

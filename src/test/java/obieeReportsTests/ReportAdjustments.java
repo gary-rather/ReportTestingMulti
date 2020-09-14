@@ -10,7 +10,7 @@ import obieeReportsUtilities.TestUtilReports;
 public class ReportAdjustments extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report ReportAdjustments setTheTest: "  );
 		super.setTheTest("ReportAdjustments");
 	}
@@ -18,13 +18,17 @@ public class ReportAdjustments extends TestBaseReports {
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void reportAdjustments(String adjOrganization, String adjDoctype, String adjAdjustmentDateStart,
 			String adjAdjustmentDateEnd, String adjTravelerLastName, String adjTravelerFirstName,
-			String adjTravelerPartialSSN) {
+			String adjTravelerPartialSSN) throws InterruptedException {
+
+		System.out.println("Report Adjustments setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
 
 		System.out.println("Try reportAdjustments");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("adjustments")
 				|| this.getTheTest().equals("ReportAdjustments")) {
-
-			System.out.println("Try reportAdjustments 1");
 
 			click("adj_reset_menu_xpath");
 			click("adj_clear_all_data_xpath");

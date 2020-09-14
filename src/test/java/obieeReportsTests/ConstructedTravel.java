@@ -18,8 +18,15 @@ public class ConstructedTravel extends TestBaseReports {
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void constructedTravel(String ctDoctype, String ctOrganization, String ctApproveDateStart,
-			String ctApproveDateEnd) {
-		System.out.println("Try constructedTravel");
+			String ctApproveDateEnd) throws InterruptedException {
+
+		System.out.println("Report ConstructedTravel setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try ConstructedTravel");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("constructed travel")
 				|| this.getTheTest().equals("ConstructedTravel")) {
 

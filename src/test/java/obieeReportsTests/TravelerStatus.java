@@ -10,14 +10,21 @@ import obieeReportsUtilities.TestUtilReports;
 public class TravelerStatus extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report TravelerStatus setTheTest: "  );
 		super.setTheTest("TravelerStatus");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void travelerStatus(String tsOrganization, String tsPartnerSystemCode, String tsShowCosts,
-							   String tsDprtDateStart, String tsDprtDateEnd, String tsTDYAsOfDate) {
+	public void travelerStatus(String tsPartnerSystemCode, String tsShowCosts, String tsDprtDateStart,
+							   String tsDprtDateEnd, String tsTDYAsOfDate) throws InterruptedException {
+
+		System.out.println("Report TravelerStatus setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try TravelerStatus");
 
 		if (config.getProperty("reportRequested").equalsIgnoreCase("traveler status")
 				|| this.getTheTest().equals("TravelerStatus")) {
@@ -25,9 +32,12 @@ public class TravelerStatus extends TestBaseReports {
 			System.out.println("Try TravelerStatus 1");
 
 			click("ts_reset_menu_xpath");
-			click("ts_clear_all_data_xpath");
+			click("ts_reset_to_default_xpath");
 
-			type("ts_organization_xpath", tsOrganization);
+			click("ts_organization_field_xpath");
+			click("ts_organization_all_selection_xpath");
+			click("ts_organization_field_xpath");
+
 			type("ts_partner_sys_code_xpath", tsPartnerSystemCode);
 
 			click("ts_show_costs_dropdown_xpath");

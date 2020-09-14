@@ -9,19 +9,24 @@ import obieeReportsUtilities.TestUtilReports;
 public class ReportOCONUS extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
-		System.out.println("Report ReportOCONUS setTheTest: "  );
+	public void runBeforeClass(){
+		System.out.println("Report OCONUS setTheTest: "  );
 		super.setTheTest("ReportOCONUS");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void reportOCONUS(String ocOrganization, String ocDoctype, String ocCivMilIndicator,
-			String ocApproveDateStart, String ocApproveDateEnd) {
-        System.out.println("Try ReportOCONUS");
+			String ocApproveDateStart, String ocApproveDateEnd) throws InterruptedException {
+
+		System.out.println("Report OCONUS setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try ReportOCONUS");
+
 		if (config.getProperty("reportRequested").equalsIgnoreCase("oconus")
 				|| this.getTheTest().equals("ReportOCONUS")) {
-
-			System.out.println("Try ReportOCONUS 1");
 
 			click("oc_reset_menu_xpath");
 			click("oc_clear_all_data_xpath");

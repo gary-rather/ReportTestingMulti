@@ -9,18 +9,24 @@ import obieeReportsUtilities.TestUtilReports;
 public class ReportFSA extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report ReportFSA setTheTest: "  );
 		super.setTheTest("ReportFSA");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void reportFSA(String fsaDoctype, String fsaOrganization, String fsaApproveDateStart, String fsaApproveDateEnd) {
-		
+	public void reportFSA(String fsaDoctype, String fsaOrganization, String fsaApproveDateStart,
+						  String fsaApproveDateEnd) throws InterruptedException {
+
+		System.out.println("Report FSA setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try ReportFSA");
+
 		if(config.getProperty("reportRequested").equalsIgnoreCase("fsa")
 				|| this.getTheTest().equals("ReportFSA")) {
-
-			System.out.println("Try ReportFSA 1");
 
 			click("fsa_reset_menu_xpath");
 			click("fsa_clear_all_data_xpath");

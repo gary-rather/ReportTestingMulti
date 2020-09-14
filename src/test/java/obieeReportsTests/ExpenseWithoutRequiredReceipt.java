@@ -9,19 +9,25 @@ import obieeReportsUtilities.TestUtilReports;
 public class ExpenseWithoutRequiredReceipt extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report ExpenseWithoutRequiredReceipt setTheTest: "  );
 		super.setTheTest("ExpenseWithoutRequiredReceipt");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void expenseWithoutRequiredReceipt(String ewrrOrganization, String ewrrDoctype,
-											  String ewrrApproveDateStart, String ewrrApproveDateEnd) {
+											  String ewrrApproveDateStart, String ewrrApproveDateEnd)
+			throws InterruptedException {
+
+		System.out.println("Report ExpenseWithoutRequiredReceipt setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try ExpenseWithoutRequiredReceipt");
 
 		if (config.getProperty("reportRequested").equalsIgnoreCase("expense without required receipt")
 				|| this.getTheTest().equals("ExpenseWithoutRequiredReceipt")) {
-
-			System.out.println("Try ExpenseWithoutRequiredReceipt 1");
 
 			click("ewrr_reset_menu_xpath");
 			click("ewrr_clear_all_data_xpath");

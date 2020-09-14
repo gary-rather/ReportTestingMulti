@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class PartnerSystemUnusedTicket extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report PartnerSystemUnusedTicket setTheTest: "  );
         super.setTheTest("PartnerSystemUnusedTicket");
     }
@@ -17,13 +17,17 @@ public class PartnerSystemUnusedTicket extends TestBaseReports {
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
     public void partnerSystemUnusedTicket(String psutOrganization, String psutTicketNumber, String psutTripRtrnDateStart,
                              String psutTripRtrnDateEnd, String psutTravelerLastName, String psutTravelerFirstName,
-                             String psutTravelerPartialSSN, String psutPartnerSystemCode) {
+                             String psutTravelerPartialSSN, String psutPartnerSystemCode) throws InterruptedException {
+
+        System.out.println("Report PartnerSystemUnusedTicket setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
 
         System.out.println("Try PartnerSystemUnusedTicket");
+
         if (config.getProperty("reportRequested").equalsIgnoreCase("ps unused ticket")
                 || this.getTheTest().equals("PartnerSystemUnusedTicket")) {
-
-            System.out.println("Try PartnerSystemUnusedTicket 1");
 
             click("psut_reset_menu_xpath");
             click("psut_clear_all_data_xpath");

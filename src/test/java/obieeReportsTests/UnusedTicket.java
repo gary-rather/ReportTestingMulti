@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class UnusedTicket extends TestBaseReports {
 
     @BeforeClass
-    public void setTheTest(){
+    public void runBeforeClass(){
         System.out.println("Report UnusedTicket setTheTest: "  );
         super.setTheTest("UnusedTicket");
     }
@@ -17,9 +17,15 @@ public class UnusedTicket extends TestBaseReports {
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
     public void unusedTicket(String utOrganization, String utTicketNumber, String utTripRtrnDateStart,
                              String utTripRtrnDateEnd, String utTravelerLastName, String utTravelerFirstName,
-                             String utTravelerPartialSSN) {
+                             String utTravelerPartialSSN) throws InterruptedException {
+
+        System.out.println("Report UnusedTicket setTheTest: "  );
+
+        runBeforeClass();
+        super.setUp();
 
         System.out.println("Try UnusedTicket");
+
         if (config.getProperty("reportRequested").equalsIgnoreCase("unused ticket")
                 || this.getTheTest().equals("UnusedTicket")) {
 

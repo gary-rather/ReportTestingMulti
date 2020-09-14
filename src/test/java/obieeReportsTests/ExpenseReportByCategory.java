@@ -9,19 +9,24 @@ import obieeReportsUtilities.TestUtilReports;
 public class ExpenseReportByCategory extends TestBaseReports {
 
 	@BeforeClass
-	public void setTheTest(){
+	public void runBeforeClass(){
 		System.out.println("Report ExpenseReportByCategory setTheTest: "  );
 		super.setTheTest("ExpenseReportByCategory");
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
 	public void expenseReportByCategory(String ercOrganization, String ercDoctype, String ercApproveDateStart,
-			String ercApproveDateEnd, String ercLOA) {
+			String ercApproveDateEnd, String ercLOA) throws InterruptedException {
+
+		System.out.println("Report ExpenseReportByCategory setTheTest: "  );
+
+		runBeforeClass();
+		super.setUp();
+
+		System.out.println("Try ExpenseReportByCategory");
 
 		if (config.getProperty("reportRequested").equalsIgnoreCase("expense report by category")
 				|| this.getTheTest().equals("ExpenseReportByCategory")) {
-
-			System.out.println("Try ExpenseReportByCategory 1");
 
 			click("erc_reset_menu_xpath");
 			click("erc_clear_all_data_xpath");
