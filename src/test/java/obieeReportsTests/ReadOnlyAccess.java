@@ -1,7 +1,8 @@
 package obieeReportsTests;
 
 import obieeReportsBase.TestBaseReports;
-import obieeReportsUtilities.TestUtilReports;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,7 +15,7 @@ public class ReadOnlyAccess extends TestBaseReports {
         super.setTheTest("ReadOnlyAccess");
     }
 
-    @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
+    @Test
     public void readOnlyAccess() throws InterruptedException {
 
         System.out.println("Report ReadOnlyAccess setTheTest: "  );
@@ -27,8 +28,16 @@ public class ReadOnlyAccess extends TestBaseReports {
         if (config.getProperty("reportRequested").equalsIgnoreCase("read only access")
                 || this.getTheTest().equals("ReadOnlyAccess")) {
 
+            Thread.sleep(1000);
+            WebElement iframe = driver.findElement(By.xpath("//iframe"));
+            driver.switchTo().frame(iframe);
+
             click("roa_org_access_field_xpath");
             click("roa_org_access_all_selection_xpath");
+            Thread.sleep(1000);
+            click("roa_org_access_all_selection_xpath");
+            click("roa_org_access_field_xpath");
+
             click("roa_run_report_xpath");
 
         } else {

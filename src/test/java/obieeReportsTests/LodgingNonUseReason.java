@@ -17,7 +17,7 @@ public class LodgingNonUseReason extends TestBaseReports {
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-    public void lodgingNonUseReasonJustification(String lnuApproveDateStart, String lnuApproveDateEnd)
+    public void lodgingNonUseReason(String lnuApproveDateStart, String lnuApproveDateEnd)
             throws InterruptedException {
 
         System.out.println("Report LodgingNonUseReasonJustification setTheTest: "  );

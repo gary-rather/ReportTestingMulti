@@ -40,8 +40,6 @@ public class RoutingStatus extends TestBaseReports {
 			type("rtg_doctype_xpath", rtgDoctype);
 
 			System.out.println("Try RoutingStatus 3");
-			//click("rtg_ao_ssn_field_xpath");
-			//click("rtg_ao_ssn_all_selection_xpath");
 			type("rtg_days_in_stat_xpath", rtgNumDaysCurrStat);
 
 			System.out.println("Try RoutingStatus 4");

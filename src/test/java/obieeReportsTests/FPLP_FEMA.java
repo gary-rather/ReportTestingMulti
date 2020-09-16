@@ -15,7 +15,7 @@ public class FPLP_FEMA extends TestBaseReports {
     }
 
     @Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-    public void fplpFema(String ffOrganization,String ffDprtDateStart, String ffDprtDateEnd)
+    public void FPLP_FEMA(String ffOrganization,String ffDprtDateStart, String ffDprtDateEnd)
             throws InterruptedException {
 
         System.out.println("Report FPLP/FEMA setTheTest: "  );

@@ -1,11 +1,10 @@
 package obieeReportsTests;
 
+import obieeReportsBase.TestBaseReports;
+import obieeReportsUtilities.TestUtilReports;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import obieeReportsBase.TestBaseReports;
-import obieeReportsUtilities.TestUtilReports;
 
 public class TravelerStatus extends TestBaseReports {
 
@@ -16,8 +15,8 @@ public class TravelerStatus extends TestBaseReports {
 	}
 
 	@Test(dataProviderClass = TestUtilReports.class, dataProvider = "dp")
-	public void travelerStatus(String tsPartnerSystemCode, String tsShowCosts, String tsDprtDateStart,
-							   String tsDprtDateEnd, String tsTDYAsOfDate) throws InterruptedException {
+	public void travelerStatus(String tsShowCosts, String tsDprtDateStart, String tsDprtDateEnd,
+							   String tsTDYAsOfDate) throws InterruptedException {
 
 		System.out.println("Report TravelerStatus setTheTest: "  );
 
@@ -38,21 +37,28 @@ public class TravelerStatus extends TestBaseReports {
 			click("ts_organization_all_selection_xpath");
 			click("ts_organization_field_xpath");
 
-			type("ts_partner_sys_code_xpath", tsPartnerSystemCode);
+			Thread.sleep(1000);
+			click("ts_partner_system_field_xpath");
+			click("ts_partner_system_all_selection_xpath");
+			Thread.sleep(1000);
+			click("ts_partner_system_all_selection_xpath");
+			click("ts_partner_system_field_xpath");
 
 			click("ts_show_costs_dropdown_xpath");
-			if(tsShowCosts.equalsIgnoreCase("Y")) {
+			if(tsShowCosts.equalsIgnoreCase("Yes")) {
 				click("ts_show_costs_yes_xpath");
-			} else if(tsShowCosts.equalsIgnoreCase("N")) {
+			} else if(tsShowCosts.equalsIgnoreCase("No")) {
 				click("ts_show_costs_no_xpath");
 			} else {
 				throw new SkipException("invalid input - try again");
 			}
 
+			Thread.sleep(1000);
 			type("ts_dprt_date_start_xpath", tsDprtDateStart);
 			type("ts_dprt_date_end_xpath", tsDprtDateEnd);
 			type("ts_tdy_as_of_date_xpath", tsTDYAsOfDate);
 
+			Thread.sleep(1000);
 			click("ts_run_report_xpath");
 
 		} else {
